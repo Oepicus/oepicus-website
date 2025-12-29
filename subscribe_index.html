@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe Example</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="icon.svg">
+    <!-- <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
+    <link rel="manifest" href="manifest.webmanifest">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 500px;
+            margin-top: 5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title text-center mb-4">Subscribe to our Newsletter</h3>
+                <div class="form-check form-switch mb-4">
+                    <input class="form-check-input" type="checkbox" role="switch" id="url-switch">
+                    <label class="form-check-label" for="url-switch">Use Development URL (dev.1voct.org)</label>
+                </div>
+
+                <form id="subscribe-form">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="first_name" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="first_name" name="first_name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="last_name" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="last_name" name="last_name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="date_of_birth" class="form-label">Date of Birth</label>
+                        <input type="date" class="form-control" id="date_of_birth" name="date_of_birth">
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input type="tel" class="form-control" id="phone" name="phone">
+                    </div>
+                    <div class="mb-3">
+                        <label for="address_line_1" class="form-label">Address Line 1</label>
+                        <input type="text" class="form-control" id="address_line_1" name="address_line_1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="city" class="form-label">City</label>
+                        <input type="text" class="form-control" id="city" name="city">
+                    </div>
+                    <div class="mb-3">
+                        <label for="country" class="form-label">Country</label>
+                        <input type="text" class="form-control" id="country" name="country" placeholder="e.g., USA, China">
+                    </div>
+                    <div class="mb-3">
+                        <label for="instagram_handle" class="form-label">Instagram</label>
+                        <input type="text" class="form-control" id="instagram_handle" name="instagram_handle">
+                    </div>
+                    <div class="mb-3">
+                        <label for="notes" class="form-label">Notes</label>
+                        <textarea class="form-control" id="notes" name="notes" rows="3"></textarea>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </div>
+                </form>
+                <div id="response-message" class="mt-3"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('subscribe-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            const responseDiv = document.getElementById('response-message');
+
+            // Toggle API URL based on the switch
+            const useDevUrl = document.getElementById('url-switch').checked;
+            const baseUrl = useDevUrl ? 'https://dev.1voct.org' : 'https://inventor.1voct.org';
+            const apiUrl = `${baseUrl}/inventor/api/create_crm_user/`;
+
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.status === 'success') {
+                    responseDiv.className = 'alert alert-success';
+                    responseDiv.textContent = 'Thank you for subscribing!';
+                    form.reset();
+                } else {
+                    responseDiv.className = 'alert alert-danger';
+                    responseDiv.textContent = 'Error: ' + (result.message || 'An unknown error occurred.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                responseDiv.className = 'alert alert-danger';
+                responseDiv.textContent = 'A network error occurred. Please try again.';
+            });
+        });
+    </script>
+</body>
+</html>
