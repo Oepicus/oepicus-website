@@ -1235,6 +1235,14 @@
                 const data = Object.fromEntries(formData.entries());
                 const responseDiv = document.getElementById('response-message');
 
+
+                // Handle tags - split by comma and trim whitespace, then create an array
+                const tagsInput = document.getElementById('tags').value;
+                if (tagsInput) {
+                    data.tags = tagsInput.split(',').map(tag => tag.trim());
+                }
+
+
                 // Toggle API URL based on the switch
                 // const useDevUrl = document.getElementById('url-switch').checked;
                 // const baseUrl = useDevUrl ? 'https://dev.1voct.org' : 'https://inventor.1voct.org';

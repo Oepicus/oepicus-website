@@ -278,6 +278,13 @@
                 const data = Object.fromEntries(formData.entries());
                 const responseDiv = document.getElementById('response-message');
 
+
+                // Handle tags - split by comma and trim whitespace, then create an array
+                const tagsInput = document.getElementById('tags').value;
+                if (tagsInput) {
+                    data.tags = tagsInput.split(',').map(tag => tag.trim());
+                }
+
                 const baseUrl = 'https://inventor.1voct.org';
                 const apiUrl = `${baseUrl}/inventor/api/create_crm_user/`;
 
