@@ -158,6 +158,8 @@
                             <i data-lucide="mail" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/50 w-4 h-4"></i>
                             <input type="email" id="email" name="email" placeholder="YOUR EMAIL PLACE" class="w-full bg-black/30 border border-white/20 text-white placeholder-white/50 py-4 pl-12 pr-4 focus:outline-none focus:border-brand-gold transition-colors text-xs tracking-widest uppercase rounded-sm h-14">
                         </div>
+                        <!-- Hidden field for tags -->
+                        <input type="hidden" id="tags" name="tags" value="oepicus_coming_soon">
                         <button type="submit" class="bg-brand-gold text-brand-dark font-bold uppercase tracking-widest px-8 py-4 hover:bg-white transition-colors rounded-sm h-14 flex items-center justify-center gap-2 text-xs">
                             Initialize <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </button>
@@ -276,7 +278,7 @@
                 const data = Object.fromEntries(formData.entries());
                 const responseDiv = document.getElementById('response-message');
 
-                const baseUrl = 'https://dev.1voct.org';
+                const baseUrl = 'https://inventor.1voct.org';
                 const apiUrl = `${baseUrl}/inventor/api/create_crm_user/`;
 
                 fetch(apiUrl, {
