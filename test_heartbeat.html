@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heartbeat Glow Box</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+        }
+
+        .heartbeat-box {
+            width: 100px;
+            height: 100px;
+            background-color: #ff0000; /* Red color for the glow source */
+            border-radius: 10px;
+            box-shadow: 0 0 40px 15px rgba(255, 0, 0, 0.7); /* The glow effect */
+            animation: heartbeat 1.5s infinite; /* Apply the animation */
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 40px 15px rgba(255, 0, 0, 0.7);
+            }
+            15% {
+                transform: scale(1.1); /* The peak of the "beat" (size) */
+                box-shadow: 0 0 60px 25px rgba(255, 0, 0, 0.9); /* Stronger glow at peak */
+            }
+            30% {
+                transform: scale(1);
+                box-shadow: 0 0 40px 15px rgba(255, 0, 0, 0.7);
+            }
+            100% {
+                transform: scale(1); /* Stays at rest for the remainder of the cycle */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="heartbeat-box"></div>
+</body>
+</html>
