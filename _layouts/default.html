@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
     <head>
-        <!-- Google tag (gtag.js) -->
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Content-Language" content="en">
+        
+        <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-4XV6K8C74B"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag() { dataLayer.push(arguments); }
             gtag('js', new Date());
-
             gtag('config', 'G-4XV6K8C74B');
         </script>
 
@@ -34,7 +37,6 @@
 
 
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="index, follow">
 
         <!-- SEO & Metadata -->
@@ -505,7 +507,7 @@
 
             function renderProducts(filter) {
                 const productCards = document.querySelectorAll('#product-grid > div');
-    
+
                 document.querySelectorAll('.filter-btn').forEach(btn => {
                     const btnFilter = btn.innerText.trim();
                     if (btnFilter.toLowerCase() === filter.toLowerCase()) {
@@ -516,7 +518,7 @@
                         btn.classList.add('text-text-muted');
                     }
                 });
-    
+
                 productCards.forEach(card => {
                     const category = card.dataset.category;
                     if (filter === 'all' || category === filter) {
@@ -758,7 +760,7 @@
 
 
 
-    {% include inventor_api.js.min.html %}
+        {% include inventor_api.js.min.html %}
 
     </body>
 
