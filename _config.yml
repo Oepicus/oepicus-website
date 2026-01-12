@@ -29,12 +29,12 @@ app_name: oepicus
   # This is used for the author name in the footer and in the feed.xml.
   # You can customize it further by editing the _includes/author.html file.
   # Example: {{ site.name }} or {{ site.name | upcase }}   
-description: >- # this means to ignore newlines until "baseurl:"
-  Future Audio Instruments. Crafting innovative sound tools for musicians and producers worldwide.
-  Explore our range of cutting-edge synthesizers, effects, and audio gear designed to inspire creativity
-  and elevate your music production experience.
-  Join our community and stay updated with the latest in audio technology.
+description: >- # this means to ignore newlines until "keywords:"
+  Oepicus crafts future audio instruments for musicians and producers. Explore our range of boutique guitar pedals, modular synth effects, and Eurorack-compatible gear. From expressive distortion and fuzz to complex delay and filters, our instruments are designed to inspire creativity for guitar, synth, and modular artists.
+
   # This is used for the meta description tag on the home page and in the feed.xml.
+keywords: "Guitar Pedals, Doom Metal, Modular Synthesisers, Eurorack Modular, Boutique Pedals, Effects Pedals, Guitar Effects, Synth Pedals, CV Control, Wavefolder, Distortion, Fuzz, Delay, Filter, Audio Instruments, Oepicus"
+
   # It is also used in the Open Graph description tag for social media sharing.
   # You can customize it further by editing the _includes/metadata.html file.
   # Example: {{ site.description }} or {{ site.description | truncate: 160 }}
