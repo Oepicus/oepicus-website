@@ -20,24 +20,12 @@
 
 title: OEPICUS | Future Audio Instruments
 email: info@oepicus.com
-  # Your email address will be obfuscated to prevent spam bots from sniffing it.
-  # You can customize the way it is obfuscated in _includes/email.html.
-  # See https://jekyllrb.com/docs/templates/#filters for details on using filters.
-  # Example: {{ site.email | obfuscate_email }}
 name: Oepicus
 app_name: oepicus
-  # This is used for the author name in the footer and in the feed.xml.
-  # You can customize it further by editing the _includes/author.html file.
-  # Example: {{ site.name }} or {{ site.name | upcase }}   
-description: >- # this means to ignore newlines until "keywords:"
-  Oepicus crafts future audio instruments for musicians and producers. Explore our range of boutique guitar pedals, modular synth effects, and Eurorack-compatible gear. From expressive distortion and fuzz to complex delay and filters, our instruments are designed to inspire creativity for guitar, synth, and modular artists.
+description: "Oepicus crafts future audio instruments for musicians and producers. Explore our range of boutique guitar pedals, modular synth effects, and Eurorack-compatible gear. From expressive distortion and fuzz to complex delay and filters, our instruments are designed to inspire creativity for guitar, synth, and modular artists."
 
-  # This is used for the meta description tag on the home page and in the feed.xml.
 keywords: "Guitar Pedals, Doom Metal, Modular Synthesisers, Eurorack Modular, Boutique Pedals, Effects Pedals, Guitar Effects, Synth Pedals, CV Control, Wavefolder, Distortion, Fuzz, Delay, Filter, Audio Instruments, Oepicus"
 
-  # It is also used in the Open Graph description tag for social media sharing.
-  # You can customize it further by editing the _includes/metadata.html file.
-  # Example: {{ site.description }} or {{ site.description | truncate: 160 }}
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://oepicus.com" # the base hostname & protocol for your site, e.g. http://example.com
 logo: /assets/Oepicus-Logo-RED-GOLD-NO-BG-1.png
