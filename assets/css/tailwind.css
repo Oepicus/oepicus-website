@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+/* Use the @config directive to load your JS config file.
+   The path must be relative to this CSS file. */
+@config "./../../tailwind.config.js";
+
+/* Load plugins using the @plugin directive */
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/aspect-ratio";

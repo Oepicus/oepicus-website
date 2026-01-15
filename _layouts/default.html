@@ -67,54 +67,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Red+Rose:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
         <!-- Tailwind CSS -->
-        <script src="/assets/tailwind.js"></script>
+        <link href="/assets/css/style.css" rel="stylesheet">
 
         <!-- Icons -->
-        <script src="/assets/lucide.js"></script>
-        <script>
-            tailwind.config = {
-                theme: {
-                    extend: {
-                        colors: {
-                            void: '#050505',
-                            panel: '#121214',
-                            brand: {
-                                gold: '#C5A059',
-                                red: '#8A2525',
-                                dark: '#0A0A0A'
-                            },
-                            text: {
-                                main: '#ffffff',
-                                muted: '#94a3b8'
-                            }
-                        },
-                        fontFamily: {
-                            display: ['"Red Rose"', 'cursive'],
-                            sans: ['"Red Rose"', 'sans-serif'],
-                            ipa: ['"Noto Sans"', 'sans-serif']
-                        },
-                        animation: {
-                            'float': 'float 8s ease-in-out infinite',
-                            'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                            'spin-slow': 'spin 15s linear infinite',
-                            'glitch': 'glitch 1s linear infinite',
-                        },
-                        keyframes: {
-                            float: {
-                                '0%, 100%': { transform: 'translateY(0)' },
-                                '50%': { transform: 'translateY(-20px)' }
-                            },
-                            glitch: {
-                                '2%, 64%': { transform: 'translate(2px,0) skew(0deg)' },
-                                '4%, 60%': { transform: 'translate(-2px,0) skew(0deg)' },
-                                '62%': { transform: 'translate(0,0) skew(5deg)' },
-                            }
-                        },
-                        screens: { 'xs': '475px' }
-                    }
-                }
-            }
-        </script>
+        <!-- <script src="/assets/lucide.js"></script> -->
+        <script src="https://unpkg.com/lucide@latest"></script>
 
         <style>
             /* Base */
@@ -754,9 +711,12 @@
 
 
 
-
+        {% comment %}
         {% include inventor_api.js.min.html %}
-
+        {% endcomment %}
+        <script>
+            {% include inventor_api.js %}
+        </script>
     </body>
 
 </html>
