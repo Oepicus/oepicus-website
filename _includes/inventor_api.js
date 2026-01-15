@@ -115,32 +115,35 @@ window.inventor_events.push('{{ page.name | split: "." | first }}');
     }
 
     // --- Subscription Form Logic (conditionally executed) ---
-    const subscribeForm = document.getElementById('subscribe-form');
-    if (subscribeForm) {
-        subscribeForm.addEventListener('submit', function (event) {
+    const subscribeForms = document.querySelectorAll('form[data-form="subscribe"]');
+    if (subscribeForms.length > 0) {
+        subscribeForms.forEach(form => {
+            form.addEventListener('submit', function (event) {
             event.preventDefault();
 
             const form = event.target;
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
 
-            // Get the visitor_id from the cookie and add it to the data
             data.visitor_id = getCookie('inventor_vid');
 
-            // Handle tags - split by comma and trim whitespace
-            const tagsInput = document.getElementById('tags').value;
-            if (tagsInput) {
-                data.tags = tagsInput.split(',').map(tag => tag.trim());
+            // Find the hidden tags input within this specific form
+            const tagsInput = form.querySelector('input[name="tags"]');
+            if (tagsInput && tagsInput.value) {
+                data.tags = tagsInput.value.split(',').map(tag => tag.trim());
             } else {
-                delete data.tags; // Ensure empty tags are not sent
+                delete data.tags;
             }
 
-            const responseDiv = document.getElementById('response-message');
+            // Find the response message div related to this form
+            const responseDiv = form.nextElementSibling;
+            if (!responseDiv || !responseDiv.classList.contains('response-message')) {
+                console.error('Could not find a .response-message element for the form.');
+                return;
+            }
 
-            // Toggle API URL based on the switch
-            const useDevUrl = document.getElementById('url-switch').checked;
-            // const baseUrl = useDevUrl ? 'https://dev.1voct.org' : 'https://inventor.1voct.org';
             const baseUrl = 'https://inventor.1voct.org';
+            // const baseUrl = 'https://dev.1voct.org';
             const apiUrl = `${baseUrl}/inventor/api/create_crm_user/`;
 
             fetch(apiUrl, {
@@ -148,22 +151,24 @@ window.inventor_events.push('{{ page.name | split: "." | first }}');
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data),
             })
-                .then(response => response.json())
-                .then(result => {
-                    if (result.status === 'success') {
-                        responseDiv.className = 'alert alert-success';
-                        responseDiv.textContent = result.message || 'Subscription successful!';
-                        form.reset();
-                    } else {
-                        responseDiv.className = 'alert alert-danger';
-                        responseDiv.textContent = 'Error: ' + (result.message || 'An unknown error occurred.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    responseDiv.className = 'alert alert-danger';
-                    responseDiv.textContent = 'A network error occurred. Please try again.';
-                });
+            .then(response => response.json())
+            .then(result => {
+                responseDiv.className = 'response-message mt-3'; // Reset classes
+                if (result.status === 'success') {
+                    responseDiv.classList.add('text-green-400');
+                    responseDiv.textContent = result.message || 'Subscription successful!';
+                    form.reset();
+                } else {
+                    responseDiv.classList.add('text-red-400');
+                    responseDiv.textContent = 'Error: ' + (result.message || 'An unknown error occurred.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                responseDiv.className = 'response-message mt-3 text-red-400';
+                responseDiv.textContent = 'A network error occurred. Please try again.';
+            });
+        });
         });
     }
 })();
