@@ -1,26 +1,26 @@
 ---
 permalink: /404.html
-layout: page
-sitemap: exclude
 ---
-
-<style type="text/css" media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
-  }
-  h1 {
-    margin: 30px 0;
-    font-size: 4em;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-</style>
-
-<div class="container">
-  <h1>404</h1>
-
-  <p><strong>Page not found :(</strong></p>
-  <p>The requested page could not be found.</p>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Page Not Found - Redirecting</title>
+  
+  <!-- This meta tag provides an immediate client-side redirect to the homepage. It must be in the <head>. -->
+  <meta http-equiv="refresh" content="0; url=/" />
+  
+  <!-- A script for fallback redirection for browsers that might not handle the meta refresh tag. -->
+  <script>
+    window.location.href = "/";
+  </script>
+</head>
+<body>
+  <!-- A message for users in case the redirect fails. -->
+  <div style="text-align: center; padding: 50px; font-family: sans-serif;">
+    <h1>Page not found.</h1>
+    <p>Redirecting you to the homepage...</p>
+    <p>If you are not redirected automatically, <a href="/">click here</a>.</p>
+  </div>
+</body>
+</html>
