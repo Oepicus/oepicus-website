@@ -50,11 +50,11 @@ deploy-com: setup-com
 
 # Deploy to oepic.us
 deploy-us: setup-us
-# 	@echo "--> Deploying to oepic_us remote..."
-# 	git add . && \
-# 	git commit -m "Deploy site to oepic.us" && \
-# 	git push --force "$(REMOTE_URL_US)" main
-# 	@echo "--> Deployment to oepic_us complete."
+	@echo "--> Deploying to oepic_us remote..."
+	git add . && \
+	git commit -m "Deploy site to oepic.us" && \
+	git push --force "$(REMOTE_URL_US)" main
+	@echo "--> Deployment to oepic_us complete."
 # 	@$(MAKE) clean
 
 # --- BUILD TARGETS ---
