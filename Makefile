@@ -39,13 +39,11 @@ help:
 
 # Deploy to oepicus.com
 deploy-com: setup-com
-# 	@echo "--> Deploying to oepicus_com remote..."
-# 	@cd $(SITE_DIR) && \
-# 	git init && \
-# 	git add . && \
-# 	git commit -m "Deploy site to oepicus.com" && \
-# 	git push --force "$(REMOTE_URL_COM)" main:gh-pages
-# 	@echo "--> Deployment to oepicus_com complete."
+	@echo "--> Deploying to oepicus_com remote..."
+	git add . && \
+	git commit -m "Deploy site to oepicus.com" && \
+	git push --force "$(REMOTE_URL_COM)" main:gh-pages
+	@echo "--> Deployment to oepicus_com complete."
 # 	@$(MAKE) clean
 
 # Deploy to oepic.us
