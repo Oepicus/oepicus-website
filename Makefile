@@ -42,7 +42,7 @@ deploy-com: setup-com
 	@echo "--> Deploying to oepicus_com remote..."
 	git add . && \
 	git commit -m "Deploy site to oepicus.com" && \
-	git push --force "$(REMOTE_URL_COM)" main:gh-pages
+	git push --force "$(REMOTE_URL_COM)" main
 	@echo "--> Deployment to oepicus_com complete."
 # 	@$(MAKE) clean
 
