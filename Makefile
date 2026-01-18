@@ -55,6 +55,10 @@ deploy-us: setup-us
 	@echo "--> Deployment to oepic_us complete."
 # 	@$(MAKE) clean
 
+
+
+deploy: deploy-com deploy-us
+	@echo "--> Deployment to both sites complete."
 # --- BUILD TARGETS ---
 
 # Build for oepicus.com
@@ -68,6 +72,9 @@ build-us: setup-us
 # 	@JEKYLL_ENV=$(JEKYLL_ENV) bundle exec jekyll build
 
 # --- SETUP & CLEANUP ---
+
+
+
 
 setup-com:
 	@echo "--> Setting up configuration for oepicus.com..."
