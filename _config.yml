@@ -21,13 +21,13 @@
 title: OEPICUS | Future Audio Instruments
 email: info@oepicus.com
 name: Oepicus
-app_name: oepic.us
+app_name: oepicus
 description: "Oepicus crafts future audio instruments for musicians and producers. Explore our range of boutique guitar pedals, modular synth effects, and Eurorack-compatible gear. From expressive distortion and fuzz to complex delay and filters, our instruments are designed to inspire creativity for guitar, synth, and modular artists."
 
 keywords: "Guitar Pedals, Doom Metal, Modular Synthesisers, Eurorack Modular, Boutique Pedals, Effects Pedals, Guitar Effects, Synth Pedals, CV Control, Wavefolder, Distortion, Fuzz, Delay, Filter, Audio Instruments, Oepicus"
 
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://oepic.us" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://oepicus.com" # the base hostname & protocol for your site, e.g. http://example.com
 logo: /assets/Oepicus-Logo-RED-GOLD-NO-BG-1.png
 social:
   name: Oepicus
@@ -35,7 +35,7 @@ social:
     - https://twitter.com/oepicus
     - https://www.facebook.com/profile.php?id=61584611603188
 
-google_analytics: G-2GEQY4P09T
+google_analytics: G-4XV6K8C74B
 
 # Build settings
 # theme: minima
