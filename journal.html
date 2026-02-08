@@ -44,11 +44,81 @@ sitemap:
                     {%- else -%}
                         {%- assign video_id_and_hash = part | split: '"><img' | first -%}
                         {%- assign video_id = video_id_and_hash | split: '#' | first -%}
-                        {%- assign width_class = 'w-full' -%}
-                        {%- if video_id_and_hash contains '#w-80' -%}{%- assign width_class = 'w-80' -%}{%- endif -%}
+                        {%- assign width_class = 'max-w-full' -%}
+                        {%- if video_id_and_hash contains '#w-' -%}
+                            {%- assign width_val = video_id_and_hash | split: '#w-' | last -%}
+                            {%- assign width_class = 'max-w-[' | append: width_val | append: 'rem]' -%}
+                        {%- endif -%}
+
                         {%- assign embed_html = '<div class="my-6 mx-auto ' | append: width_class | append: '"><div class="aspect-video"><iframe src="https://www.youtube.com/embed/' | append: video_id | append: '?controls=1&amp;showinfo=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="rounded-lg shadow-lg w-full h-full"></iframe></div></div>' -%}
                         {%- assign rest_of_part = part | split: '</a></p>' | last -%}
                         {%- assign processed_content = processed_content | append: embed_html | append: rest_of_part -%}
+                    {%- endif -%}
+                {%- endfor -%}
+
+                {%- assign final_content = '' -%}
+                {%- assign image_parts = processed_content | split: '<img src="' -%}
+                {%- for img_part in image_parts -%}
+                    {%- if forloop.first -%}
+                        {%- assign final_content = final_content | append: img_part -%}
+                    {%- else -%}
+                        {%- if img_part contains '#w-' -%}
+                            {%- assign src_and_alt = img_part | split: '"' -%}
+                            {%- assign src_full = src_and_alt[0] -%}
+                            {%- assign src_path = src_full | split: '#' | first -%}
+                            {%- assign src_hash = src_full | split: '#' | last -%}
+                            {%- assign width_param = src_hash | split: ';' | first -%}
+                            {%- assign width_val = width_param | remove: 'w-' -%}
+                            {%- assign width_style = '' -%}
+                            {%- assign width_class = '' -%}
+                            {%- if width_val contains '%' -%}
+                                {%- assign width_style = 'width: ' | append: width_val | append: ';' -%}
+                            {%- else -%}
+                                {%- assign width_class = 'w-' | append: width_val -%}
+                            {%- endif -%}
+                            {%- assign align_val = src_hash | split: 'a-' | last -%}
+                            {%- assign align_class = 'float-' | append: align_val -%}
+                            {%- if align_val == 'left' -%}
+                                {%- assign margin_class = 'mr-6 ' -%}
+                            {%- else -%}
+                                {%- assign margin_class = 'ml-6 ' -%}
+                            {%- endif -%}
+                            {%- assign rest_of_tag = src_and_alt | shift | join: '"' -%}
+                            {%- assign new_img_tag = '<img src="' | append: src_path | append: '" class="' | append: align_class | append: ' ' | append: width_class | append: ' ' | append: margin_class | append: 'mb-4 rounded-lg shadow-lg" style="' | append: width_style | append: '" ' | append: rest_of_tag -%}
+                            {%- assign final_content = final_content | append: new_img_tag -%}
+                        {%- else -%}
+                            {%- assign final_content = final_content | append: '<img src="' | append: img_part -%}
+                        {%- endif -%}
+                    {%- endif -%}
+                {%- endfor -%}
+
+                {%- assign paragraphs = final_content | split: '<p>' -%}
+                {%- assign output_content = '' -%}
+                {%- for p_content in paragraphs -%}
+                    {%- if forloop.first and p_content == '' -%}{%- continue -%}{%- endif -%}
+                    {%- if p_content contains 'class="float-' -%}
+                        {%- assign img_tag_and_rest = p_content | split: '>' -%}
+                        {%- assign img_tag = img_tag_and_rest | first | append: '>' -%}
+                        {%- assign text_content = img_tag_and_rest | shift | join: '>' -%}
+
+                        {%- assign style_attr = p_content | split: 'style="' | last | split: '"' | first -%}
+                        {%- assign width_percent_str = style_attr | remove: 'width: ' | remove: '%;' -%}
+                        {%- assign width_percent = width_percent_str | plus: 0 -%}
+                        {%- assign text_width_percent = 100 | minus: width_percent -%}
+
+                        {%- assign image_col_style = 'style="flex-basis: ' | append: width_percent | append: '%;"' -%}
+                        {%- assign text_col_style = 'style="flex-basis: ' | append: text_width_percent | append: '%;"' -%}
+                        {%- assign image_col = '<div class="mb-6 md:mb-0" ' | append: image_col_style | append: '>' | append: img_tag | replace: 'class="float-left', 'class="w-full' | replace: 'class="float-right', 'class="w-full' | replace: 'style="width: 30%;"', '' | append: '</div>' -%}
+                        {%- assign text_col = '<div class="text-text-muted leading-relaxed" ' | append: text_col_style | append: '><p>' | append: text_content | append: '</p></div>' -%}
+
+                        {%- if p_content contains 'float-left' -%}
+                            {%- assign wrapped_p = '<div class="md:flex md:gap-8 not-prose">' | append: image_col | append: text_col | append: '</div>' -%}
+                        {%- else -%}
+                            {%- assign wrapped_p = '<div class="md:flex md:gap-8 not-prose">' | append: text_col | append: image_col | append: '</div>' -%}
+                        {%- endif -%}
+                        {%- assign output_content = output_content | append: wrapped_p -%}
+                    {%- else -%}
+                        {%- assign output_content = output_content | append: '<p>' | append: p_content | append: '</p>' -%}
                     {%- endif -%}
                 {%- endfor -%}
 
@@ -66,30 +136,32 @@ sitemap:
                             <img src="{{ post.image_path | relative_url }}" alt="{{ post.image_alt | escape }}" class="rounded-lg shadow-lg w-full">
                         </div>
                         <div class="md:w-{{ text_width }} text-text-muted leading-relaxed">
-                            {{ processed_content }}
+                            {{ output_content }}
                         </div>
                     </div>
                     {% elsif post.image_layout == 'right' %}
                     <div class="md:flex md:gap-8">
                         <div class="md:w-{{ text_width }} text-text-muted leading-relaxed">
-                            {{ processed_content }}
+                            {{ output_content }}
                         </div>
                         <div class="md:w-{{ image_width }} mt-6 md:mt-0">
                             <img src="{{ post.image_path | relative_url }}" alt="{{ post.image_alt | escape }}" class="rounded-lg shadow-lg w-full">
                         </div>
                     </div>
                     {% else %}
-                    <!-- Default to 'top' layout -->
+                    <!-- Default to 'top' layout or when no layout is specified -->
                     <div class="mb-6">
                         <img src="{{ post.image_path | relative_url }}" alt="{{ post.image_alt | escape }}" class="rounded-lg shadow-lg w-full">
                     </div>
                     <div class="text-text-muted leading-relaxed">
-                        {{ processed_content }}
+                        {{ output_content }}
                     </div>
                     {% endif %}
                 {% else %}
                     <!-- Fallback for posts without an image -->
-                    <div class="text-text-muted leading-relaxed">{{ processed_content }}</div>
+                    <div class="prose prose-invert prose-lg max-w-none text-text-muted leading-relaxed prose-headings:text-white prose-headings:font-display prose-a:text-brand-gold prose-strong:text-white">
+                        {{ output_content }}
+                    </div>
                 {% endif %}
 
             </article>

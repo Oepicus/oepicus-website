@@ -2,8 +2,8 @@
 layout: default
 title: Home - Oepicus
 sitemap:
-  priority: 1.0
-  changefreq: daily
+priority: 1.0
+changefreq: daily
 ---
 
 <!-- Hero Section -->
@@ -14,11 +14,11 @@ sitemap:
         <div class="space-y-6 md:space-y-8 fade-in-up text-center lg:text-left z-20">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] font-bold tracking-[0.3em] uppercase text-brand-gold mx-auto lg:mx-0">
                 <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                Systems Online
+                Signal Live
             </div>
             <!-- UPDATED SIZE: Significantly reduced to text-2xl/3xl/5xl to ensure single-line display -->
             <h1 class="text-2xl sm:text-3xl md:text-5xl font-display font-bold leading-[0.9] tracking-tight">
-                <span class="whitespace-nowrap">FOLLOW YOUR TONE.</span><br>
+                <span class="whitespace-nowrap">Create Your Opus. Make It Epic. Patchable Guitar Pedals for Sonic Adventurers.</span><br>
                 <span class="text-gradient glitch-hover cursor-default whitespace-nowrap">SHAPE YOUR BLISS.</span>
             </h1>
             <p class="text-base md:text-lg text-text-muted max-w-md mx-auto lg:mx-0 leading-relaxed">
@@ -49,19 +49,15 @@ sitemap:
 
                 {% assign is_first_hero_image = true %}
                 {% for p in site.data.products %}
-                    {% for image in p.images %}
-                        {% assign image_path = image | replace: '//', '/' %}
-                        <picture>
-                            <source srcset="{{ image_path }}.webp" type="image/webp">
-                            <source srcset="{{ image_path }}.png" type="image/png">
-                            <img src="{{ image_path }}.png"
-                                 class="hero-slide absolute inset-0 w-full h-full object-contain z-10 drop-shadow-[0_0_50px_rgba(197,160,89,0.2)] mask-image-gradient p-4 {% if is_first_hero_image %}opacity-100 scale-100 blur-0{% else %}opacity-0 scale-95 blur-sm{% endif %}"
-                                 style="mask-image: linear-gradient(black 80%, transparent 100%);" 
-                                 alt="{{ p.name }} hero image" 
-                                 loading="{% if is_first_hero_image %}eager{% else %}lazy{% endif %}">
-                        </picture>
-                        {% assign is_first_hero_image = false %}
-                    {% endfor %}
+                {% for image in p.images %}
+                {% assign image_path = image | replace: '//', '/' %}
+                <picture>
+                    <source srcset="{{ image_path }}.webp" type="image/webp">
+                    <source srcset="{{ image_path }}.png" type="image/png">
+                    <img src="{{ image_path }}.png" class="hero-slide absolute inset-0 w-full h-full object-contain z-10 drop-shadow-[0_0_50px_rgba(197,160,89,0.2)] mask-image-gradient p-4 {% if is_first_hero_image %}opacity-100 scale-100 blur-0{% else %}opacity-0 scale-95 blur-sm{% endif %}" style="mask-image: linear-gradient(black 80%, transparent 100%);" alt="{{ p.name }} hero image" loading="{% if is_first_hero_image %}eager{% else %}lazy{% endif %}">
+                </picture>
+                {% assign is_first_hero_image = false %}
+                {% endfor %}
                 {% endfor %}
             </div>
         </div>
@@ -104,7 +100,9 @@ sitemap:
             <input type="hidden" name="tags" value="{{ site.app_name }}_landing_page">
 
             <button type="submit" class="bg-brand-gold text-brand-dark font-bold uppercase tracking-widest px-8 py-4 hover:bg-white transition-colors rounded-sm h-14 flex items-center justify-center gap-2 text-xs">
-                GRAB UPDATES <svg class="w-4 h-4"><use xlink:href="#lucide-arrow-right"></use></svg>
+                GRAB UPDATES <svg class="w-4 h-4">
+                    <use xlink:href="#lucide-arrow-right"></use>
+                </svg>
             </button>
         </form>
         <div class="response-message mt-3"></div>
@@ -142,8 +140,8 @@ sitemap:
                     <use xlink:href="#lucide-cpu"></use>
                 </svg>
             </div>
-            <h3 class="text-white font-display font-bold tracking-widest text-lg md:text-xl mb-1 uppercase">Precision by Design</h3>
-            <p class="text-text-muted text-xs md:text-sm font-light tracking-wider">In-House SMT Manufacturing</p>
+            <h3 class="text-white font-display font-bold tracking-widest text-lg md:text-xl mb-1 uppercase">Patchable Guitar Pedals</h3>
+            <p class="text-text-muted text-xs md:text-sm font-light tracking-wider">Bridges guitars, synths, modular</p>
         </div>
 
         <div class="hidden md:block w-px h-16 bg-gradient-to-b from-transparent via-white/10 to-transparent"></div>
@@ -156,7 +154,7 @@ sitemap:
                 </svg>
             </div>
             <h3 class="text-white font-display font-bold tracking-widest text-lg md:text-xl mb-1 uppercase">Built in Epic Surroundings</h3>
-            <p class="text-text-muted text-xs md:text-sm font-light tracking-wider">Global Distribution Ready</p>
+            <p class="text-text-muted text-xs md:text-sm font-light tracking-wider">In-house Manufacturing. No compromises.</p>
         </div>
     </div>
 </div>
@@ -224,26 +222,23 @@ sitemap:
                 Why Oepicus Exists
             </h3>
             <div class="text-text-muted leading-relaxed space-y-6 text-sm md:text-base">
-                <p>
+                <!-- <p>
                     Oepicus began with a feeling, which is rarely a sensible way to start a company, but often the only way to start something worth doing.
+                </p> -->
+                <p>
+                    Our name is a fusion of Opus (a great work) and Epic (something beyond yourself). It represents our obsession with things built to endure—whether it’s a timeless story or a circuit forged with intent.
                 </p>
                 <p>
-                    Our name is built from Opus, a great work, and Epic, something larger than yourself. It reflects the kind of work we admire: stuff crafted with care, shaped by effort, and meant to endure&mdash;whether that's a piece of music, a timeless story, or a sunrise that briefly convinces you everything is fine.
+                    After years of breaking and rebuilding gear, we realized we weren’t just chasing "good tone"—we were chasing the satisfaction of shaping it. We believe true instruments should reward your attention, not offer you a shortcut.
                 </p>
                 <p>
-                    We've spent years playing, building, breaking, and rebuilding gear, and along the way realised we weren't just chasing sound&mdash;we were chasing the satisfaction of shaping it properly. Instruments, we believe, should reward attention rather than shortcuts.
+                    These aren’t just pedals; they are synthesis-level instruments. By bringing dynamic control and CV integration to the pedalboard, we’ve opened a door for guitarists and modular explorers alike.
                 </p>
                 <p>
-                    We started with pedals because they sit at a curious crossroads: immediate yet deep. But these are not straightforward guitar pedals. Oepicus instruments bring synthesis-level ideas&mdash;dynamic control, CV integration, expressive interaction&mdash;into the hands of guitarists, synth players, and modular explorers alike.
-                </p>
-                <p>
-                    Built by designers and engineers with over 30 years of combined experience, every Oepicus instrument is produced using professional assembly and in-house SMT manufacturing to ensure consistency and reliability. Each unit behaves exactly as intended. Any chaos is entirely your own.
+                    With 30 years of combined engineering experience and our own in-house manufacturing facility, we guarantee consistency and reliability. Each unit behaves exactly as intended.
                 </p>
                 <p class="font-bold text-white mt-4">
-                    Oepicus exists to celebrate the beautiful act of making sound&mdash;<br>
-                    for those who see music not just as output, but as blissful work.<br>
-                    An opus.<br>
-                    Made epic.
+                    Any chaos is entirely your own.
                 </p>
             </div>
         </div>
@@ -256,11 +251,15 @@ sitemap:
         <h2 class="text-xs font-bold text-brand-gold tracking-[0.3em] uppercase mb-4 md:mb-6">The Apollon Series</h2>
         <h3 class="text-3xl md:text-5xl font-display font-medium leading-tight text-white mb-6">How Apollo Got Involved</h3>
         <div class="text-text-muted leading-relaxed space-y-6 text-sm md:text-base">
-            <p>The idea for the Apollon Series arrived, as many questionable yet productive ideas do, during a holiday in Greece. No drugs were involved in its creation&mdash;though there may have been far too much coffee. Details remain unclear.</p>
-            <p>Surrounded by ancient stones, relentless sunlight, and the lingering sense that the gods never really left, we found ourselves thinking about Apollo&mdash;not the polite statue version, but the complicated one. God of music, light, order, prophecy, and the occasional divine overreaction. It became obvious that his many domains mapped rather neatly onto how modern musicians actually work: shifting between instruments, roles, and states of mind, often mid-song.</p>
-            <p>From that moment came the Radiant Instruments of Apollo&mdash;a family of pedals, each embodying one of his attributes. Not recreations or relics, but modern instruments designed to move fluidly between guitar, synth, and modular worlds. Mythic in spirit, practical in use, and very much alive.</p>
+            <p>
+                The spark for the Apollon Series hit us in Greece—surrounded by ancient stone, relentless sun, and far too much caffeine. We realized that Apollo wasn’t just a polite statue; he was the complicated God of Music, Light, Order, and the occasional divine overreaction.
+            </p>
+            <p>
+                His domains map perfectly onto the modern musician: shifting between roles, instruments, and states of mind mid-song.
+            </p>
+            <p>FWe are launching with four distinct, expressive pedals. Each is a titan on its own. But together? They form a tectonic shift in your signal chain.</p>
             <p>We began with four pedals. Each stands on its own. Together, they form something greater&mdash;at which point we fully expect fireworks, shenanigans, and possibly mild celestial commentary.</p>
-            <p class="font-bold text-white">Apollo, after all, was never known for subtlety.</p>
+            <p class="font-bold text-white">With Oepicus, we’re taking everything we’ve learned about synthesis-level control and putting it into the hands of guitarists, synth players, and sound designers alike.</p>
         </div>
     </div>
 </section>
@@ -340,7 +339,8 @@ sitemap:
                         <source srcset="{{ p.images[0] | remove: '.png' }}.webp" type="image/webp">
                         <source srcset="{{ p.images[0] }}" type="image/png">
                         <img src="{{ p.images[0] }}" class="w-full h-full object-contain drop-shadow-xl transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3 relative z-10" alt="{{ p.name }}" loading="lazy" onerror="this.src='assets/placeholder.png'">
-                    </picture>                    <div class="absolute inset-0 bg-brand-gold/10 filter blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </picture>
+                    <div class="absolute inset-0 bg-brand-gold/10 filter blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
                 <div class="p-6">
                     <div class="flex justify-between items-start mb-2">
@@ -353,7 +353,8 @@ sitemap:
                         <button onclick="openProductModal('{{ p.name }}')" class="flex-1 px-4 py-3 bg-white/5 hover:bg-brand-gold border border-white/20 hover:border-brand-gold rounded-sm text-white hover:text-brand-dark transition-colors uppercase tracking-widest text-xs font-bold flex items-center justify-center gap-2">
                             <svg class="w-4 h-4">
                                 <use xlink:href="#lucide-scan-line"></use>
-                            </svg> Inspect Instrument
+                            </svg>
+                            Full Specs and Demo
                         </button>
                     </div>
                 </div>
@@ -531,7 +532,9 @@ sitemap:
             <input type="hidden" name="tags" value="{{ site.app_name }}_landing_page_footer">
 
             <button type="submit" class="bg-brand-gold text-brand-dark font-bold uppercase tracking-widest px-8 py-4 hover:bg-white transition-colors rounded-sm h-14 flex items-center justify-center gap-2 text-xs">
-                Subscribe <svg class="w-4 h-4"><use xlink:href="#lucide-arrow-right"></use></svg>
+                Subscribe <svg class="w-4 h-4">
+                    <use xlink:href="#lucide-arrow-right"></use>
+                </svg>
             </button>
         </form>
         <div class="response-message mt-3"></div>
@@ -547,12 +550,16 @@ sitemap:
         <div class="p-6 border-b border-white/10 flex justify-between items-center">
             <h2 class="font-display text-2xl font-bold text-white">Cart</h2>
             <button onclick="toggleCart()" class="text-text-muted hover:text-white transition-colors p-2">
-                <svg class="w-6 h-6"><use xlink:href="#lucide-x"></use></svg>
+                <svg class="w-6 h-6">
+                    <use xlink:href="#lucide-x"></use>
+                </svg>
             </button>
         </div>
         <div class="flex-1 flex flex-col justify-center items-center text-center p-8 space-y-6">
             <div class="w-20 h-20 rounded-full bg-brand-gold/10 flex items-center justify-center mb-4 border border-brand-gold/20">
-                <svg class="w-8 h-8 text-brand-gold"><use xlink:href="#lucide-shopping-bag"></use></svg>
+                <svg class="w-8 h-8 text-brand-gold">
+                    <use xlink:href="#lucide-shopping-bag"></use>
+                </svg>
             </div>
             <h3 class="text-xl font-medium text-white">Store Offline</h3>
             <p class="text-text-muted max-w-xs text-sm">The commerce engine is currently in diagnostic mode. Sign up for launch notifications.</p>
@@ -568,7 +575,9 @@ sitemap:
     <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity duration-300" onclick="closeProductModal()"></div>
     <div class="relative w-full md:max-w-5xl glass-heavy md:rounded-2xl rounded-t-2xl shadow-2xl overflow-hidden flex flex-col md:grid md:grid-cols-2 opacity-0 translate-y-20 md:scale-95 transition-all duration-300 transform h-[92vh] md:h-[85vh]" id="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <button onclick="closeProductModal()" class="absolute top-4 right-4 z-50 bg-black/50 p-2 rounded-full text-white hover:text-brand-gold backdrop-blur-md" aria-label="Close product modal">
-            <svg class="w-6 h-6"><use xlink:href="#lucide-x"></use></svg>
+            <svg class="w-6 h-6">
+                <use xlink:href="#lucide-x"></use>
+            </svg>
         </button>
 
         <!-- Modal Image Side with Carousel -->
@@ -585,10 +594,14 @@ sitemap:
 
             <!-- Carousel Navigation -->
             <button id="prev-btn" class="carousel-btn left-4 hidden" onclick="prevSlide()" aria-label="Previous image">
-                <svg class="w-6 h-6"><use xlink:href="#lucide-chevron-left"></use></svg>
+                <svg class="w-6 h-6">
+                    <use xlink:href="#lucide-chevron-left"></use>
+                </svg>
             </button>
             <button id="next-btn" class="carousel-btn right-4 hidden" onclick="nextSlide()" aria-label="Next image">
-                <svg class="w-6 h-6"><use xlink:href="#lucide-chevron-right"></use></svg>
+                <svg class="w-6 h-6">
+                    <use xlink:href="#lucide-chevron-right"></use>
+                </svg>
             </button>
 
             <!-- Dots -->

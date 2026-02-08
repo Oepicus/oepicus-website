@@ -7,4 +7,3 @@
 /* Load plugins using the @plugin directive */
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/typography";
-@plugin "@tailwindcss/aspect-ratio";

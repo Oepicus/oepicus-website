@@ -78,7 +78,10 @@ serve:
 	@echo "--> Serving site locally at http://localhost:4000 ..."
 	bundle exec jekyll serve
 	
-
+tailwind:
+	@echo "--> Generating Tailwind CSS..."
+	./_tools/bin/tailwindcss-macos-arm64  -i ./assets/css/tailwind.css -o ./assets/css/style.css --minify
+	@echo "--> Tailwind CSS generated."
 
 setup-com:
 	@echo "--> Setting up configuration for oepicus.com..."

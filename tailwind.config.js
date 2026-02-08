@@ -1,5 +1,10 @@
 module.exports = {
   content: [
+    './_layouts/**/*.html',
+    './_includes/**/*.html',
+    './_posts/**/*.md',
+    './*.html',
+    './assets/js/**/*.js',
     './_layouts/**/*.{html,liquid}', // Scan Jekyll layouts
     './_includes/**/*.{html,liquid}', // Scan Jekyll includes
     './_posts/**/*.md', // Scan Jekyll posts
@@ -18,6 +23,7 @@ module.exports = {
       },
       width: {
         '80': '80%',
+        '30': '30%',
       },
       colors: {
         void: '#050505',

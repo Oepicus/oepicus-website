@@ -1,1 +1,1 @@
-./assets/tailwind/tailwindcss-macos-arm64  -i ./assets/css/tailwind.css -o ./assets/css/style.css --minify
+./_tools/bin/tailwindcss-macos-arm64  -i ./assets/css/tailwind.css -o ./assets/css/style.css --minify
