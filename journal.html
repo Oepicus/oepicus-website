@@ -35,6 +35,23 @@ sitemap:
                     </h2>
                 </header>
 
+                {%- assign content = post.content | markdownify -%}
+                {%- assign content_parts = content | split: '<p><a href="https://www.youtube.com/watch?v=' -%}
+                {%- assign processed_content = '' -%}
+                {%- for part in content_parts -%}
+                    {%- if forloop.first -%}
+                        {%- assign processed_content = processed_content | append: part -%}
+                    {%- else -%}
+                        {%- assign video_id_and_hash = part | split: '"><img' | first -%}
+                        {%- assign video_id = video_id_and_hash | split: '#' | first -%}
+                        {%- assign width_class = 'w-full' -%}
+                        {%- if video_id_and_hash contains '#w-80' -%}{%- assign width_class = 'w-80' -%}{%- endif -%}
+                        {%- assign embed_html = '<div class="my-6 mx-auto ' | append: width_class | append: '"><div class="aspect-video"><iframe src="https://www.youtube.com/embed/' | append: video_id | append: '?controls=1&amp;showinfo=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="rounded-lg shadow-lg w-full h-full"></iframe></div></div>' -%}
+                        {%- assign rest_of_part = part | split: '</a></p>' | last -%}
+                        {%- assign processed_content = processed_content | append: embed_html | append: rest_of_part -%}
+                    {%- endif -%}
+                {%- endfor -%}
+
                 {% if post.image_path %}
                     {%- assign image_width = post.image_width | default: "1/3" -%}
                     {%- if image_width == "1/3" -%}{%- assign text_width = "2/3" -%}{%- endif -%}
@@ -49,13 +66,13 @@ sitemap:
                             <img src="{{ post.image_path | relative_url }}" alt="{{ post.image_alt | escape }}" class="rounded-lg shadow-lg w-full">
                         </div>
                         <div class="md:w-{{ text_width }} text-text-muted leading-relaxed">
-                            {{ post.content | nl2br | markdownify }}
+                            {{ processed_content }}
                         </div>
                     </div>
                     {% elsif post.image_layout == 'right' %}
                     <div class="md:flex md:gap-8">
                         <div class="md:w-{{ text_width }} text-text-muted leading-relaxed">
-                            {{ post.content | nl2br | markdownify }}
+                            {{ processed_content }}
                         </div>
                         <div class="md:w-{{ image_width }} mt-6 md:mt-0">
                             <img src="{{ post.image_path | relative_url }}" alt="{{ post.image_alt | escape }}" class="rounded-lg shadow-lg w-full">
@@ -67,12 +84,12 @@ sitemap:
                         <img src="{{ post.image_path | relative_url }}" alt="{{ post.image_alt | escape }}" class="rounded-lg shadow-lg w-full">
                     </div>
                     <div class="text-text-muted leading-relaxed">
-                        {{ post.content | nl2br | markdownify }}
+                        {{ processed_content }}
                     </div>
                     {% endif %}
                 {% else %}
                     <!-- Fallback for posts without an image -->
-                    <div class="text-text-muted leading-relaxed">{{ post.content | nl2br | markdownify }}</div>
+                    <div class="text-text-muted leading-relaxed">{{ processed_content }}</div>
                 {% endif %}
 
             </article>

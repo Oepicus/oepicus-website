@@ -16,6 +16,9 @@ module.exports = {
       scale: {
         '100': '1',
       },
+      width: {
+        '80': '80%',
+      },
       colors: {
         void: '#050505',
         panel: '#121214',
