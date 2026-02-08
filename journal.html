@@ -35,22 +35,36 @@ sitemap:
                     </h2>
                 </header>
 
-                {%- assign content = post.content | markdownify -%}
-                {%- assign content_parts = content | split: '<p><a href="https://www.youtube.com/watch?v=' -%}
                 {%- assign processed_content = '' -%}
+                {%- assign content_parts = post.content | markdownify | split: '<p><a href="https://www.youtube.com/watch?v=' -%}
                 {%- for part in content_parts -%}
                     {%- if forloop.first -%}
                         {%- assign processed_content = processed_content | append: part -%}
                     {%- else -%}
                         {%- assign video_id_and_hash = part | split: '"><img' | first -%}
                         {%- assign video_id = video_id_and_hash | split: '#' | first -%}
-                        {%- assign width_class = 'max-w-full' -%}
-                        {%- if video_id_and_hash contains '#w-' -%}
-                            {%- assign width_val = video_id_and_hash | split: '#w-' | last -%}
-                            {%- assign width_class = 'max-w-[' | append: width_val | append: 'rem]' -%}
+                        {%- assign src_hash = video_id_and_hash | split: '#' | last -%}
+                        
+                        {%- assign width_val = '' -%}
+                        {%- assign align_val = '' -%}
+                        {%- if src_hash contains 'w-' -%}{%- assign width_val = src_hash | split: 'w-' | last | split: ';' | first -%}{%- endif -%}
+                        {%- if src_hash contains 'a-' -%}{%- assign align_val = src_hash | split: 'a-' | last | split: ';' | first -%}{%- endif -%}
+
+                        {%- assign width_style = '' -%}
+                        {%- if width_val != '' and width_val contains '%' -%}
+                            {%- assign width_style = 'style="width: ' | append: width_val | append: ';"' -%}
                         {%- endif -%}
 
-                        {%- assign embed_html = '<div class="my-6 mx-auto ' | append: width_class | append: '"><div class="aspect-video"><iframe src="https://www.youtube.com/embed/' | append: video_id | append: '?controls=1&amp;showinfo=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="rounded-lg shadow-lg w-full h-full"></iframe></div></div>' -%}
+                        {%- assign align_class = '' -%}
+                        {%- assign margin_class = '' -%}
+                        {%- if align_val != '' -%}
+                            {%- assign align_class = 'float-' | append: align_val -%}
+                            {%- if align_val == 'left' -%}{%- assign margin_class = 'mr-6' -%}{%- else -%}{%- assign margin_class = 'ml-6' -%}{%- endif -%}
+                        {%- else -%}
+                            {%- assign align_class = 'mx-auto' -%}
+                        {%- endif -%}
+
+                        {%- assign embed_html = '<div class="my-6 ' | append: align_class | append: ' ' | append: margin_class | append: ' mb-4" ' | append: width_style | append: '><div class="aspect-video"><iframe src="https://www.youtube.com/embed/' | append: video_id | append: '?controls=1&amp;showinfo=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="rounded-lg shadow-lg w-full h-full"></iframe></div></div>' -%}
                         {%- assign rest_of_part = part | split: '</a></p>' | last -%}
                         {%- assign processed_content = processed_content | append: embed_html | append: rest_of_part -%}
                     {%- endif -%}
@@ -97,7 +111,7 @@ sitemap:
                 {%- for p_content in paragraphs -%}
                     {%- if forloop.first and p_content == '' -%}{%- continue -%}{%- endif -%}
                     {%- if p_content contains 'class="float-' -%}
-                        {%- assign img_tag_and_rest = p_content | split: '>' -%}
+                        {%- assign img_tag_and_rest = p_content | split: '>' -%} 
                         {%- assign img_tag = img_tag_and_rest | first | append: '>' -%}
                         {%- assign text_content = img_tag_and_rest | shift | join: '>' -%}
 
@@ -108,13 +122,13 @@ sitemap:
 
                         {%- assign image_col_style = 'style="flex-basis: ' | append: width_percent | append: '%;"' -%}
                         {%- assign text_col_style = 'style="flex-basis: ' | append: text_width_percent | append: '%;"' -%}
-                        {%- assign image_col = '<div class="mb-6 md:mb-0" ' | append: image_col_style | append: '>' | append: img_tag | replace: 'class="float-left', 'class="w-full' | replace: 'class="float-right', 'class="w-full' | replace: 'style="width: 30%;"', '' | append: '</div>' -%}
+                        {%- assign image_col = '<div class="mb-6 md:mb-0" ' | append: image_col_style | append: '>' | append: img_tag | replace: 'float-left', 'w-full' | replace: 'float-right', 'w-full' | replace: 'style="width: 30%;"', '' | append: '</div>' -%}
                         {%- assign text_col = '<div class="text-text-muted leading-relaxed" ' | append: text_col_style | append: '><p>' | append: text_content | append: '</p></div>' -%}
 
                         {%- if p_content contains 'float-left' -%}
-                            {%- assign wrapped_p = '<div class="md:flex md:gap-8 not-prose">' | append: image_col | append: text_col | append: '</div>' -%}
+                            {%- assign wrapped_p = '<div class="md:flex md:gap-8 items-start not-prose">' | append: image_col | append: text_col | append: '</div>' -%}
                         {%- else -%}
-                            {%- assign wrapped_p = '<div class="md:flex md:gap-8 not-prose">' | append: text_col | append: image_col | append: '</div>' -%}
+                            {%- assign wrapped_p = '<div class="md:flex md:gap-8 items-start not-prose">' | append: text_col | append: image_col | append: '</div>' -%}
                         {%- endif -%}
                         {%- assign output_content = output_content | append: wrapped_p -%}
                     {%- else -%}
