@@ -9,6 +9,10 @@
             "/assets/products//6001_f_1k",
             "/assets/products//6001_a2_1k"
         ],
+        "videos": [
+            "https://youtube.com/shorts/xCc_GD1MU1c?feature=share",
+            "https://youtube.com/shorts/F76X_yD9y-w?feature=share"
+        ],
         "specs": { "bypass": "Buffered", "draw": "85mA", "power": "9V DC", "origin": "The Fold Point" },
         "features": [
             "<strong>Analog Boost + Envelope-Driven Wavefolder</strong><br><span class=\"text-text-muted font-light\">A dynamic front end feeds a responsive wavefolding stage, letting harmonics emerge according to touch rather than force alone.</span>",
@@ -26,6 +30,10 @@
         "images": [
             "/assets/products//6003_f_1k",
             "/assets/products//6003_a2_1k"
+        ],
+        "videos": [
+            "https://youtube.com/shorts/c7hRQvX9QWM?feature=share",
+            "https://youtube.com/shorts/oKgEUwththM?feature=share"
         ],
         "specs": { "bypass": "Buffered", "draw": "130mA", "power": "9V DC", "origin": "When the Light Looked Away" },
         "features": [
@@ -47,6 +55,10 @@
             "/assets/products//6004_f_1k",
             "/assets/products//6004_a2_1k"
         ],
+        "videos": [
+            "https://youtube.com/shorts/ifgLRe2baz8?feature=share",
+            "https://youtube.com/shorts/ld_yUnoUIt8?feature=share"
+        ],
         "specs": { "bypass": "Buffered", "draw": "80mA", "power": "9V DC", "origin": "Later Than Expected" },
         "features": [
             "<strong>Warm, Dirty, Analog-like Delay</strong><br><span class=\"text-text-muted font-light\">Delivers warm, organic repeats with the gentle degradation expected of analog timekeeping.</span>",
@@ -67,6 +79,11 @@
             "/assets/products//6005_f_1k",
             "/assets/products//6005_a2_1k"
         ],
+        "videos": [
+            "https://youtube.com/shorts/iIlbevfsRzM?feature=share",
+            "https://youtube.com/shorts/ImY-T3Gomuo?feature=share"
+        ],
+
         "specs": { "bypass": "Buffered", "draw": "40mA", "power": "9V DC", "origin": "Hell (With Notes)" },
         "features": [
             "<strong>Tri-Engine Gain Architecture</strong><br><span class=\"text-text-muted font-light\">DS-1–inspired distortion, Big Muff–style transistor fuzz, and TS-9–influenced overdrive coexist in a single system, each contributing its own opinion about how sound should be treated.</span>",
@@ -86,6 +103,10 @@
         "images": [
             "/assets/products//6002_f_1k",
             "/assets/products//6002_a2_1k"
+        ],
+        "videos": [
+            "https://youtube.com/shorts/qy0n7Oh6G5s?feature=share",
+            "https://youtube.com/shorts/XZCOidkp1V8?feature=share"
         ],
         "specs": { "bypass": "True Bypass", "draw": "30mA", "power": "9V DC", "origin": "A Controlled Burn" },
         "features": [

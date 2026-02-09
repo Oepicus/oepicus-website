@@ -74,7 +74,7 @@ build-us: setup-us
 # --- SETUP & CLEANUP ---
 
 
-serve:
+serve: tailwind
 	@echo "--> Serving site locally at http://localhost:4000 ..."
 	bundle exec jekyll serve
 	
@@ -101,4 +101,6 @@ clean:
 	@echo "--> Cleaning up and restoring original files..."
 	@mv -f $(BACKUP_CONFIG) _config.yml 2>/dev/null || true
 	@mv -f $(BACKUP_CNAME) CNAME 2>/dev/null || true
+	@echo "--> Removing build artifacts and caches..."
+	@rm -rf $(SITE_DIR) .jekyll-cache .sass-cache
 	@echo "--> Cleanup complete."

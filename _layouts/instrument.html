@@ -1,0 +1,362 @@
+---
+layout: default
+---
+
+<style>
+    /* Ensure content starts below the fixed nav */
+    .content-container {
+        padding-top: 120px; /* Adjust based on main nav height */
+    }
+
+    .product-nav {
+        position: sticky;
+        top: 100px; /* Adjust to be below main nav */
+        z-index: 40;
+    }
+
+    .product-nav-item.active {
+        transform: scale(1.1);
+        border-color: #C5A059; /* brand-gold */
+    }
+
+    .product-nav-item.active img {
+        filter: none;
+    }
+
+    .product-nav-item img {
+        filter: grayscale(80%) brightness(0.7);
+        transition: filter 0.3s ease, transform 0.3s ease;
+    }
+
+    .product-nav-item:hover img {
+        filter: grayscale(40%) brightness(0.9);
+    }
+    .product-nav-item:hover {
+        transform: scale(1.1);
+    }
+
+    .product-image-carousel {
+        position: relative;
+    }
+
+    .carousel-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 0.6s ease-in-out;
+        will-change: opacity;
+    }
+
+    .carousel-image.active {
+        opacity: 1;
+    }
+
+    .carousel-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    .carousel-dot.active {
+        background-color: #C5A059; /* brand-gold */
+        transform: scale(1.2);
+    }
+
+    .carousel-btn {
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+    }
+
+    .carousel-btn:hover {
+        background: rgba(197, 160, 89, 0.8);
+    }
+</style>
+
+{% comment %}
+  Find the product from the data file that matches the ID from the page's front matter.
+{% endcomment %}
+{% assign products = site.data.products %}
+{% for p in products %}
+    {% if p.id == page.product_id %}{% assign current_product_index = forloop.index0 %}{% endif %}
+{% endfor %}
+{% assign product = site.data.products | where: "id", page.product_id | first %}
+
+<div class="content-container">
+    {% include product_nav.html current_product_id=product.id %}
+
+    <main class="max-w-7xl mx-auto px-6 pb-24 md:pb-32">
+        <div class="grid md:grid-cols-2 gap-12 lg:gap-16 items-start">
+            <!-- Left Side: Image Carousel -->
+            <div class="relative aspect-square flex items-center justify-center bg-white/5 rounded-lg p-8">
+                <div class="product-image-carousel w-full h-full">
+                    {% for img in product.images %}
+                        {% assign img_path = img | replace: '//', '/' | prepend: site.baseurl %}
+                        <img src="{{ img_path }}.png" alt="{{ product.name }} view" class="carousel-image w-full h-full object-contain drop-shadow-xl {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}">
+                    {% endfor %}
+                </div>
+
+                {% if product.images.size > 1 %}
+                <!-- Carousel Controls -->
+                <button onclick="changeSlide(-1)" class="carousel-btn absolute top-1/2 left-4 -translate-y-1/2 p-2 rounded-full text-white transition-colors" aria-label="Previous image">
+                    <svg class="w-6 h-6"><use xlink:href="#lucide-chevron-left"></use></svg>
+                </button>
+                <button onclick="changeSlide(1)" class="carousel-btn absolute top-1/2 right-4 -translate-y-1/2 p-2 rounded-full text-white transition-colors" aria-label="Next image">
+                    <svg class="w-6 h-6"><use xlink:href="#lucide-chevron-right"></use></svg>
+                </button>
+
+                <!-- Carousel Dots -->
+                <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-3 z-10" id="carousel-dots">
+                    {% for img in product.images %}<button class="carousel-dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}" onclick="setSlide({{ forloop.index0 }})"></button>{% endfor %}
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Right Side: Details -->
+            <div class="text-white">
+                <p class="text-brand-gold font-bold uppercase tracking-widest text-xs mb-2">{{ product.category }}</p>
+                <h1 class="text-4xl md:text-5xl font-display font-bold mb-2">{{ product.name }}</h1>
+                <h2 class="text-xl text-text-muted font-light mb-6">{{ product.subtitle }}</h2>
+                
+                <div class="prose prose-invert prose-lg max-w-none text-text-muted leading-relaxed mb-8">
+                    <p>{{ product.desc | newline_to_br }}</p>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="font-bold text-white uppercase tracking-widest text-sm mb-4">Core Character</h3>
+                    <ul class="space-y-3 text-text-muted">
+                        {% for feature in product.features %}
+                        <li class="flex items-start gap-3"><div class="w-1.5 h-1.5 mt-2 bg-brand-gold rounded-full shrink-0"></div><span>{{ feature }}</span></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 bg-black/40 p-6 rounded-lg border border-white/10">
+                    <div>
+                        <p class="text-xs text-text-muted uppercase tracking-widest">Bypass</p>
+                        <p class="font-bold text-white">{{ product.specs.bypass }}</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-text-muted uppercase tracking-widest">Power</p>
+                        <p class="font-bold text-white">{{ product.specs.power }}</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-text-muted uppercase tracking-widest">Draw</p>
+                        <p class="font-bold text-white">{{ product.specs.draw }}</p>
+                    </div>
+                    <div>
+                        <p class="text-xs text-text-muted uppercase tracking-widest">Origin</p>
+                        <p class="font-bold text-white">{{ product.specs.origin }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if product.videos and product.videos.size > 0 %}
+        <!-- Video Section -->
+        <div class="mt-24 pt-16 border-t border-white/10">
+            <h3 class="text-3xl md:text-4xl font-display font-bold text-white mb-8 text-center">In Action (sound from {{ product.name }})</h3>
+            <div class="max-w-4xl mx-auto grid grid-cols-2 gap-4 md:gap-8">
+                {% for video_url in product.videos %} {% assign video_id = video_url | split: '/' | last | split: '?' | first %}
+                    <!-- Vertical Aspect Ratio Container for YouTube Shorts -->
+                    <div class="relative w-full overflow-hidden rounded-lg shadow-lg bg-black" style="padding-top: 177.77%;">
+                        <iframe
+                            class="absolute top-0 left-0 w-full h-full"
+                            src="https://www.youtube.com/embed/{{ video_id }}"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Kickstarter Pre-launch Section -->
+        <div class="mt-40 pt-16 mb-16 border-t border-white/10">
+            <div class="max-w-4xl mx-auto text-center fade-in-up">
+                <div class="flex justify-center mb-6">
+                    <img src="{{ site.baseurl }}/assets/kickstarter_logo_2019.svg" alt="Kickstarter" class="h-8 md:h-10">
+                </div>
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-3">We Are in Pre-Launch!</h2>
+                <p class="text-green-300 font-bold uppercase tracking-widest text-sm mb-6">Follow Our Campaign to Get Notified on Launch</p>
+                <p class="text-white/80 text-base mb-8 md:text-xl max-w-16xl mx-auto">
+                    The journey to forge the Apollon Series is about to begin. Be among the first to know when our Kickstarter goes live. Follow our project to secure early-bird offers and become a founding part of the Oepicus story.
+                </p>
+                <p>
+                    <a href="https://www.kickstarter.com/projects/1voct/oepicus-patchable-guitar-pedals" class="px-8 py-4 bg-green-500 text-brand-dark font-bold rounded-sm hover:bg-white transition-all duration-300 flex items-center justify-center gap-2 tracking-widest uppercase text-sm">
+                        Follow on Kickstarter
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Subscribe Section -->
+        <div class="mt-16 pt-16 border-t border-white/10">
+            <div class="max-w-lg mx-auto text-center fade-in-up">
+                <h3 class="text-2xl font-display font-bold mb-4">Subscribe to Newsletter</h3>
+                <p class="text-text-muted mb-8 text-sm">Get the latest signals from Oepicus, including product announcements, articles, and exclusive offers.</p>
+                <form class="flex flex-col sm:flex-row gap-4" data-form="subscribe">
+                    <div class="relative flex-1">
+                        <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/50 w-4 h-4"><use xlink:href="#lucide-mail"></use></svg>
+                        <input type="email" name="email" placeholder="YOUR EMAIL ADDRESS" class="w-full bg-black/30 border border-white/20 text-white placeholder-white/50 py-4 pl-12 pr-4 focus:outline-none focus:border-brand-gold transition-colors text-xs tracking-widest uppercase rounded-sm h-14">
+                    </div>
+                    <input type="hidden" name="tags" value="{{ site.app_name }}_instrument_page_{{ product.name | slugify }}">
+                    <button type="submit" class="bg-brand-gold text-brand-dark font-bold uppercase tracking-widest px-8 py-4 hover:bg-white transition-colors rounded-sm h-14 flex items-center justify-center gap-2 text-xs">
+                        Subscribe <svg class="w-4 h-4"><use xlink:href="#lucide-arrow-right"></use></svg>
+                    </button>
+                </form>
+                <div class="response-message mt-3"></div>
+            </div>
+        </div>
+
+        <!-- Next/Previous Product Navigation -->
+        {% assign product_count = products | size %}
+        {% assign next_product_index = current_product_index | plus: 1 %}
+        {% if next_product_index >= product_count %}{% assign next_product_index = 0 %}{% endif %}
+
+        {% assign prev_product_index = current_product_index | minus: 1 %}
+        {% if prev_product_index < 0 %}{% assign prev_product_index = product_count | minus: 1 %}{% endif %}
+
+        {% assign next_product = products[next_product_index] %}
+        {% assign prev_product = products[prev_product_index] %}
+
+        <div class="mt-24 pt-16 border-t border-white/10 flex justify-between items-center">
+            <!-- Previous Product -->
+            <a href="{{ site.baseurl }}/instruments/{{ prev_product.name | slugify }}/" class="group flex items-center gap-4 text-left">
+                <div class="p-3 rounded-full bg-white/5 border border-white/10 group-hover:bg-brand-gold/20 group-hover:border-brand-gold/30 transition-all">
+                    <svg class="w-6 h-6 text-white group-hover:text-brand-gold transition-colors"><use xlink:href="#lucide-chevron-left"></use></svg>
+                </div>
+                <div>
+                    <p class="text-xs text-text-muted uppercase tracking-widest">Previous</p>
+                    <p class="font-bold text-white text-lg font-display group-hover:text-brand-gold transition-colors">{{ prev_product.name }}</p>
+                </div>
+            </a>
+
+            <!-- Next Product -->
+            <a href="{{ site.baseurl }}/instruments/{{ next_product.name | slugify }}/" class="group flex items-center gap-4 text-right">
+                <div>
+                    <p class="text-xs text-text-muted uppercase tracking-widest">Next</p>
+                    <p class="font-bold text-white text-lg font-display group-hover:text-brand-gold transition-colors">{{ next_product.name }}</p>
+                </div>
+                <div class="p-3 rounded-full bg-white/5 border border-white/10 group-hover:bg-brand-gold/20 group-hover:border-brand-gold/30 transition-all">
+                    <svg class="w-6 h-6 text-white group-hover:text-brand-gold transition-colors"><use xlink:href="#lucide-chevron-right"></use></svg>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    {% if product.images.size > 1 %}
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.carousel-image');
+        const dots = document.querySelectorAll('#carousel-dots .carousel-dot');
+        const totalSlides = slides.length;
+        let autoSlideInterval;
+
+        function resetAutoSlide() {
+            clearInterval(autoSlideInterval);
+            autoSlideInterval = setInterval(() => changeSlide(1), 4000); // Change every 4 seconds
+        }
+
+        function updateCarousel() {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlideIndex);
+            });
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlideIndex);
+            });
+        }
+
+        function setSlide(index) {
+            currentSlideIndex = index;
+            updateCarousel();
+            resetAutoSlide();
+        }
+
+        function changeSlide(direction) {
+            currentSlideIndex += direction;
+
+            if (currentSlideIndex >= totalSlides) {
+                currentSlideIndex = 0;
+            } else if (currentSlideIndex < 0) {
+                currentSlideIndex = totalSlides - 1;
+            }
+
+            updateCarousel();
+        }
+
+        // Wrapper for manual interaction to reset the timer
+        function manualChangeSlide(direction) {
+            changeSlide(direction);
+            resetAutoSlide();
+        }
+
+        // Optional: Add keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') manualChangeSlide(-1);
+            if (e.key === 'ArrowRight') manualChangeSlide(1);
+        });
+
+        // Start the automatic sliding
+        resetAutoSlide();
+
+    </script>
+    {% endif %}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if it's a touch device to avoid interfering with desktop scrolling/clicking
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            if (!isTouchDevice) return;
+
+            const swipeContainer = document.querySelector('main.max-w-7xl');
+            if (!swipeContainer) return;
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            const prevProductUrl = "{{ site.baseurl }}/instruments/{{ prev_product.name | slugify }}/";
+            const nextProductUrl = "{{ site.baseurl }}/instruments/{{ next_product.name | slugify }}/";
+
+            swipeContainer.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            swipeContainer.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+
+            function handleSwipe() {
+                const threshold = 50; // Minimum swipe distance in pixels
+
+                // Swipe Left (to Next Product)
+                if (touchStartX - touchEndX > threshold) {
+                    window.location.href = nextProductUrl;
+                }
+
+                // Swipe Right (to Previous Product)
+                if (touchEndX - touchStartX > threshold) {
+                    window.location.href = prevProductUrl;
+                }
+            }
+        });
+    </script>
+
+    {% if product.images.size > 1 %}
+    <script>
+        // This is a small patch to connect the manual slide buttons to the correct function
+        document.addEventListener('DOMContentLoaded', () => {
+            const prevButton = document.querySelector('.carousel-btn[aria-label="Previous image"]');
+            const nextButton = document.querySelector('.carousel-btn[aria-label="Next image"]');
+            if(prevButton) prevButton.setAttribute('onclick', 'manualChangeSlide(-1)');
+            if(nextButton) nextButton.setAttribute('onclick', 'manualChangeSlide(1)');
+        });
+    </script>
+    {% endif %}
+</div>

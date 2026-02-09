@@ -326,6 +326,8 @@
 
         {% include footer.html %}
 
+        {% include video-modal.html %}
+
         {% include consent.html %}
 
 
@@ -423,42 +425,10 @@
             let currentImageIndex = 0;
 
             // Touch variables for swipe
-            let touchStartX = 0;
-            let touchEndX = 0;
 
             function init() {
                 setupObservers();
                 initHeroCarousel(); // Initialize Hero Slideshow
-                setupSwipe(); // Initialize Modal Swipe
-            }
-
-            function setupSwipe() {
-                const container = document.getElementById('modal-image-container');
-
-                container.addEventListener('touchstart', e => {
-                    touchStartX = e.changedTouches[0].screenX;
-                }, { passive: true });
-
-                container.addEventListener('touchend', e => {
-                    touchEndX = e.changedTouches[0].screenX;
-                    handleSwipe();
-                }, { passive: true });
-            }
-
-            function handleSwipe() {
-                if (!currentProduct || !currentProduct.images || currentProduct.images.length <= 1) return;
-
-                const threshold = 50; // Minimum distance for a swipe
-
-                if (touchStartX - touchEndX > threshold) {
-                    // Swiped Left -> Next Image
-                    nextSlide();
-                }
-
-                if (touchEndX - touchStartX > threshold) {
-                    // Swiped Right -> Previous Image
-                    prevSlide();
-                }
             }
 
             function renderProducts(filter) {
@@ -483,116 +453,6 @@
                         card.style.display = 'none';
                     }
                 });
-            }
-
-            // CAROUSEL LOGIC
-            function openProductModal(name) {
-                const p = products.find(i => i.name === name);
-                if (!p) return;
-                currentProduct = p;
-                currentImageIndex = 0; // Reset to first image
-
-                updateCarousel(); // Initialize images/buttons
-
-                document.getElementById('modal-title').innerText = p.name;
-                document.getElementById('modal-subtitle').innerText = p.subtitle;
-                document.getElementById('modal-desc').innerText = p.desc;
-                document.getElementById('modal-category').innerText = p.category;
-
-                const featureList = document.getElementById('modal-features');
-                featureList.innerHTML = p.features.map(f => `<li class="flex items-start gap-2 mb-2"><div class="w-1.5 h-1.5 mt-1.5 bg-brand-gold rounded-full shrink-0"></div><span class="leading-tight">${f}</span></li>`).join('');
-
-                document.getElementById('spec-bypass').innerText = p.specs.bypass;
-                document.getElementById('spec-power').innerText = p.specs.power;
-                document.getElementById('spec-draw').innerText = p.specs.draw;
-                document.getElementById('spec-origin').innerText = p.specs.origin;
-
-                // Inject Extended Info
-                const extendedContainer = document.getElementById('modal-extended');
-                extendedContainer.innerHTML = p.extendedInfo || '';
-
-                const modal = document.getElementById('product-modal');
-                const card = document.getElementById('modal-card');
-
-                modal.classList.remove('hidden');
-                setTimeout(() => {
-                    card.classList.remove('opacity-0', 'translate-y-20', 'md:scale-95');
-                    card.classList.add('opacity-100', 'translate-y-0', 'md:scale-100');
-                }, 20);
-                document.body.style.overflow = 'hidden';
-            }
-
-            function updateCarousel() {
-                if (!currentProduct) return;
-
-                const webpSource = document.getElementById('modal-img-webp');
-                const pngSource = document.getElementById('modal-img-png');
-                const img = document.getElementById('modal-img');
-                const prevBtn = document.getElementById('prev-btn');
-                const nextBtn = document.getElementById('next-btn');
-                const dotsContainer = document.getElementById('carousel-dots');
-
-                // Set Image
-                if (currentProduct.images && currentProduct.images.length > 0) {
-                    const baseImagePath = currentProduct.images[currentImageIndex];
-                    webpSource.srcset = `${baseImagePath}.webp`;
-                    pngSource.srcset = `${baseImagePath}.png`;
-                    img.src = `${baseImagePath}.png`;
-                } else {
-                    webpSource.srcset = '';
-                    pngSource.srcset = '';
-                    img.src = '';
-                }
-
-                // Controls Visibility
-                if (currentProduct.images && currentProduct.images.length > 1) {
-                    prevBtn.classList.remove('hidden');
-                    nextBtn.classList.remove('hidden');
-                } else {
-                    prevBtn.classList.add('hidden');
-                    nextBtn.classList.add('hidden');
-                }
-
-                // Render Dots
-                dotsContainer.innerHTML = '';
-                if (currentProduct.images && currentProduct.images.length > 1) {
-                    currentProduct.images.forEach((_, idx) => {
-                        const dot = document.createElement('div');
-                        dot.className = `carousel-dot ${idx === currentImageIndex ? 'active' : ''}`;
-                        dot.onclick = () => {
-                            currentImageIndex = idx;
-                            updateCarousel();
-                        };
-                        dotsContainer.appendChild(dot);
-                    });
-                }
-            }
-
-            function nextSlide() {
-                if (!currentProduct || !currentProduct.images) return;
-                currentImageIndex++;
-                if (currentImageIndex >= currentProduct.images.length) {
-                    currentImageIndex = 0;
-                }
-                updateCarousel();
-            }
-
-            function prevSlide() {
-                if (!currentProduct || !currentProduct.images) return;
-                currentImageIndex--;
-                if (currentImageIndex < 0) {
-                    currentImageIndex = currentProduct.images.length - 1;
-                }
-                updateCarousel();
-            }
-
-            function closeProductModal() {
-                const modal = document.getElementById('product-modal');
-                const card = document.getElementById('modal-card');
-                card.classList.remove('opacity-100', 'translate-y-0', 'md:scale-100');
-                card.classList.add('opacity-0', 'translate-y-20', 'md:scale-95');
-                setTimeout(() => { modal.classList.add('hidden'); }, 300);
-                document.body.style.overflow = 'auto';
             }
 
             function toggleCart() {
@@ -715,21 +575,6 @@
             });
         </script>
 
-
-
-
-<script>
-    function closeVideoModal() {
-        const modal = document.getElementById('video-modal');
-        const iframe = document.getElementById('youtube-video');
-        const videoSrc = iframe.src;
-        
-        // By resetting the src, we stop the video from playing
-        iframe.src = '';
-        iframe.src = videoSrc;
-        modal.classList.add('hidden');
-    }
-</script>
 
 
         {% comment %}

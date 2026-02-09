@@ -1,0 +1,41 @@
+{% comment %}
+  Find the current product's index to determine next/previous products.
+{% endcomment %}
+{% assign products = site.data.products %}
+{% for p in products %}
+    {% if p.id == include.current_product_id %}{% assign current_product_index = forloop.index0 %}{% endif %}
+{% endfor %}
+
+{% assign product_count = products | size %}
+{% assign next_product_index = current_product_index | plus: 1 %}
+{% if next_product_index >= product_count %}{% assign next_product_index = 0 %}{% endif %}
+
+{% assign prev_product_index = current_product_index | minus: 1 %}
+{% if prev_product_index < 0 %}{% assign prev_product_index = product_count | minus: 1 %}{% endif %}
+
+{% assign next_product = products[next_product_index] %}
+{% assign prev_product = products[prev_product_index] %}
+
+<!-- Product Navigation Bar -->
+<nav class="product-nav glass py-4 mb-12">
+    <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <!-- Previous Product -->
+        <a href="{{ site.baseurl }}/instruments/{{ prev_product.name | slugify }}/" class="group p-3 rounded-full bg-white/5 border border-white/10 hover:bg-brand-gold/20 hover:border-brand-gold/30 transition-all" aria-label="Previous Product: {{ prev_product.name }}">
+            <svg class="w-6 h-6 text-white group-hover:text-brand-gold transition-colors"><use xlink:href="#lucide-chevron-left"></use></svg>
+        </a>
+
+        <!-- Product Icons -->
+        <div id="product-nav-container" class="flex justify-center items-center gap-2 md:gap-4 overflow-x-auto px-2">
+            {% for p in products %}
+            <a href="{{ site.baseurl }}/instruments/{{ p.name | slugify }}/" class="product-nav-item p-1 rounded-md border-2 border-transparent transition-all duration-300 {% if include.current_product_id == p.id %}active{% endif %}" data-product-id="{{ p.id }}" aria-label="{{ p.name }}">
+                <img src="{{ site.baseurl }}{{ p.images[0] | replace: '//', '/' }}.png" alt="{{ p.name }}" class="h-12 w-12 md:h-16 md:w-16 object-contain">
+            </a>
+            {% endfor %}
+        </div>
+
+        <!-- Next Product -->
+        <a href="{{ site.baseurl }}/instruments/{{ next_product.name | slugify }}/" class="group p-3 rounded-full bg-white/5 border border-white/10 hover:bg-brand-gold/20 hover:border-brand-gold/30 transition-all" aria-label="Next Product: {{ next_product.name }}">
+            <svg class="w-6 h-6 text-white group-hover:text-brand-gold transition-colors"><use xlink:href="#lucide-chevron-right"></use></svg>
+        </a>
+    </div>
+</nav>

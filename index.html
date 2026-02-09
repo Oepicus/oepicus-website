@@ -376,28 +376,28 @@ changefreq: daily
             <!-- Products are rendered here at build time from _data/products.json -->
             {% for p in site.data.products %}
             <div class="group relative card-glass rounded-lg overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-brand-gold/10 fade-in-up" style="transition-delay: {{ forloop.index0 | times: 50 }}ms" data-category="{{ p.category }}">
-                <div class="relative aspect-square p-8 bg-gradient-to-br from-white/5 to-transparent flex items-center justify-center cursor-pointer overflow-hidden" onclick="openProductModal('{{ p.name }}')">
+                <a href="/instruments/{{ p.name | slugify }}/" class="relative aspect-square p-8 bg-gradient-to-br from-white/5 to-transparent flex items-center justify-center cursor-pointer overflow-hidden">
                     <picture>
                         <source srcset="{{ p.images[0] | remove: '.png' }}.webp" type="image/webp">
                         <source srcset="{{ p.images[0] }}" type="image/png">
                         <img src="{{ p.images[0] }}" class="w-full h-full object-contain drop-shadow-xl transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3 relative z-10" alt="{{ p.name }}" loading="lazy" onerror="this.src='assets/placeholder.png'">
                     </picture>
                     <div class="absolute inset-0 bg-brand-gold/10 filter blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                </div>
+                </a>
                 <div class="p-6">
                     <div class="flex justify-between items-start mb-2">
                         <div>
-                            <h3 class="text-xl font-display font-bold text-white group-hover:text-brand-gold transition-colors">{{ p.name }}</h3>
+                            <h3 class="text-xl font-display font-bold text-white"><a href="/instruments/{{ p.name | slugify }}/" class="group-hover:text-brand-gold transition-colors">{{ p.name }}</a></h3>
                             <p class="text-[10px] font-bold text-text-muted uppercase tracking-wider">{{ p.subtitle }}</p>
                         </div>
                     </div>
                     <div class="flex gap-2 mt-6">
-                        <button onclick="openProductModal('{{ p.name }}')" class="flex-1 px-4 py-3 bg-white/5 hover:bg-brand-gold border border-white/20 hover:border-brand-gold rounded-sm text-white hover:text-brand-dark transition-colors uppercase tracking-widest text-xs font-bold flex items-center justify-center gap-2">
+                        <a href="/instruments/{{ p.name | slugify }}/" class="flex-1 px-4 py-3 bg-white/5 hover:bg-brand-gold border border-white/20 hover:border-brand-gold rounded-sm text-white hover:text-brand-dark transition-colors uppercase tracking-widest text-xs font-bold flex items-center justify-center gap-2">
                             <svg class="w-4 h-4">
                                 <use xlink:href="#lucide-scan-line"></use>
                             </svg>
                             Full Specs and Demo
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -405,6 +405,10 @@ changefreq: daily
         </div>
     </div>
 </section>
+
+
+<!-- The modal is no longer needed and will be removed from the default layout -->
+
 
 
 <!-- FAQ -->
