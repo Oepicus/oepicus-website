@@ -227,7 +227,7 @@ layout: default
 
         <div class="mt-24 pt-16 border-t border-white/10 flex justify-between items-center">
             <!-- Previous Product -->
-            <a href="{{ site.baseurl }}/instruments/{{ prev_product.name | slugify }}/" class="group flex items-center gap-4 text-left">
+            <a href="{{ site.baseurl }}/instruments/{{ prev_product.name | slugify }}" class="group flex items-center gap-4 text-left">
                 <div class="p-3 rounded-full bg-white/5 border border-white/10 group-hover:bg-brand-gold/20 group-hover:border-brand-gold/30 transition-all">
                     <svg class="w-6 h-6 text-white group-hover:text-brand-gold transition-colors"><use xlink:href="#lucide-chevron-left"></use></svg>
                 </div>
@@ -238,7 +238,7 @@ layout: default
             </a>
 
             <!-- Next Product -->
-            <a href="{{ site.baseurl }}/instruments/{{ next_product.name | slugify }}/" class="group flex items-center gap-4 text-right">
+            <a href="{{ site.baseurl }}/instruments/{{ next_product.name | slugify }}" class="group flex items-center gap-4 text-right">
                 <div>
                     <p class="text-xs text-text-muted uppercase tracking-widest">Next</p>
                     <p class="font-bold text-white text-lg font-display group-hover:text-brand-gold transition-colors">{{ next_product.name }}</p>
@@ -320,8 +320,8 @@ layout: default
             let touchStartX = 0;
             let touchEndX = 0;
 
-            const prevProductUrl = "{{ site.baseurl }}/instruments/{{ prev_product.name | slugify }}/";
-            const nextProductUrl = "{{ site.baseurl }}/instruments/{{ next_product.name | slugify }}/";
+            const prevProductUrl = "{{ site.baseurl }}/instruments/{{ prev_product.name | slugify }}";
+            const nextProductUrl = "{{ site.baseurl }}/instruments/{{ next_product.name | slugify }}";
 
             swipeContainer.addEventListener('touchstart', e => {
                 touchStartX = e.changedTouches[0].screenX;

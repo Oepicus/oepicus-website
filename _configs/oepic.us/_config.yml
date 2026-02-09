@@ -47,7 +47,7 @@ plugins:
 collections:
   instruments:
     output: true
-    permalink: /instruments/:name/
+    permalink: /instruments/:name
 
 
 # Exclude from processing.
