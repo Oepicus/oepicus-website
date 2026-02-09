@@ -1,0 +1,73 @@
+---
+layout: default
+title: The Instruments - Oepicus
+sitemap:
+    priority: 0.9
+    changefreq: weekly
+---
+
+<style>
+    /* Ensure content starts below the fixed nav */
+    .content-container {
+        padding-top: 120px; /* Adjust based on main nav height */
+    }
+
+    .product-nav {
+        position: sticky;
+        top: 100px; /* Adjust to be below main nav */
+        z-index: 40;
+    }
+
+    .product-nav-item.active {
+        transform: scale(1.1);
+        border-color: #C5A059; /* brand-gold */
+    }
+
+    .product-nav-item.active img {
+        filter: none;
+    }
+
+    .product-nav-item img {
+        filter: grayscale(80%) brightness(0.7);
+        transition: filter 0.3s ease;
+    }
+
+    .product-nav-item:hover img {
+        filter: grayscale(40%) brightness(0.9);
+    }
+
+    #product-display-container {
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    .product-image-carousel .carousel-image {
+        display: none;
+    }
+
+    .product-image-carousel .carousel-image.active {
+        display: block;
+    }
+</style>
+
+<div class="content-container">
+    <!-- Product Navigation Bar -->
+    <nav class="product-nav bg-black/60 backdrop-blur-xl border-b border-t border-white/10 py-4 mb-12">
+        <div class="max-w-7xl mx-auto px-6">
+            <div id="product-nav-container" class="flex justify-center items-center gap-4 md:gap-6 overflow-x-auto">
+                {% for product in site.data.products %}
+                <a href="#{{ product.id }}"
+                   class="product-nav-item p-1 rounded-md border-2 border-transparent transition-all duration-300"
+                   data-product-id="{{ product.id }}"
+                   onclick="selectProduct('{{ product.id }}', event)">
+                    <img src="{{ product.images[0] | replace: '//', '/' }}.png" alt="{{ product.name }}" class="h-12 w-12 md:h-16 md:w-16 object-contain">
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Display Section -->
+    <main id="product-display-container" class="max-w-7xl mx-auto px-6 pb-24 md:pb-32">
+        <!-- Product content will be injected here -->
+    </main>
+</div>

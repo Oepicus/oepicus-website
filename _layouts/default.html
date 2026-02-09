@@ -718,7 +718,18 @@
 
 
 
-
+<script>
+    function closeVideoModal() {
+        const modal = document.getElementById('video-modal');
+        const iframe = document.getElementById('youtube-video');
+        const videoSrc = iframe.src;
+        
+        // By resetting the src, we stop the video from playing
+        iframe.src = '';
+        iframe.src = videoSrc;
+        modal.classList.add('hidden');
+    }
+</script>
 
 
         {% comment %}

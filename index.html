@@ -34,6 +34,9 @@ changefreq: daily
                     </svg> Watch Film
                 </button>
             </div>
+            <div class="mt-4 lg:max-w-sm mx-auto">
+                <div class="aspect-video"><iframe id="youtube-video" src="https://www.youtube.com/embed/BDh9SwrrF30?controls=1&amp;showinfo=0&enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="rounded-lg shadow-lg w-full h-full"></iframe></div>
+            </div>
         </div>
 
         <!-- Hero Visual (Animated) -->
@@ -116,6 +119,31 @@ changefreq: daily
             </section> -->
 
 </section>
+
+<!-- Kickstarter Pre-launch Section -->
+<section class="py-16 md:py-20 bg-black/50 border-y-2 border-green-400/50 relative z-10 overflow-hidden">
+    <div class="absolute inset-0 bg-grid opacity-30"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black"></div>
+    <div class="max-w-4xl mx-auto text-center fade-in-up">
+
+        <!-- </div>    <div class="max-w-8xl mx-auto px-6 text-center relative z-20 fade-in-up"> -->
+        <div class="flex justify-center mb-6">
+            <img src="assets/kickstarter_logo_2019.svg" alt="Kickstarter" class="h-8 md:h-10">
+        </div>
+        <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-3">We Are in Pre-Launch!</h2>
+        <p class="text-green-300 font-bold uppercase tracking-widest text-sm mb-6">Follow Our Campaign to Get Notified on Launch</p>
+        <p class="text-white/80 text-base mb-8 md:text-xl max-w-16xl mx-auto">
+            The journey to forge the Apollon Series is about to begin. Be among the first to know when our Kickstarter goes live. Follow our project to secure early-bird offers and become a founding part of the Oepicus story.
+        </p>
+        <p>
+            <a href="https://www.kickstarter.com/projects/1voct/oepicus-patchable-guitar-pedals" class="px-8 py-4 bg-green-500 text-brand-dark font-bold rounded-sm hover:bg-white transition-all duration-300 flex items-center justify-center gap-2 tracking-widest uppercase text-sm">
+                Follow on Kickstarter
+            </a>
+
+        </p>
+    </div>
+</section>
+
 
 <!-- Stats Strip -->
 <div class="border-y border-white/10 bg-black/60 backdrop-blur-xl z-10 relative">
@@ -240,6 +268,20 @@ changefreq: daily
                 <p class="font-bold text-white mt-4">
                     Any chaos is entirely your own.
                 </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Video Section - Updated for Lazy Loading -->
+<section id="instruments" class="py-24 md:py-32 px-6 relative z-10 border-b border-white/5 bg-white/5 overflow-hidden">
+    <div class="max-w-7xl mx-auto text-center md:text-left fade-in-up">
+        <div class="grid md:grid-cols-2 gap-8 my-12">
+            <div>
+                <div class="aspect-video"><iframe src="https://www.youtube.com/embed/Iec9LRfR1XU?controls=1&amp;showinfo=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="rounded-lg shadow-lg w-full h-full"></iframe></div>
+            </div>
+            <div>
+                <div class="aspect-video"><iframe src="https://www.youtube.com/embed/BDh9SwrrF30?controls=1&amp;showinfo=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="rounded-lg shadow-lg w-full h-full"></iframe></div>
             </div>
         </div>
     </div>
@@ -649,12 +691,13 @@ changefreq: daily
 </div>
 
 <!-- Video Modal -->
-<div id="video-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/95 backdrop-blur px-4" onclick="this.classList.add('hidden')">
-    <div class="text-center">
-        <svg class="w-12 h-12 md:w-16 md:h-16 text-white/20 mx-auto mb-4">
-            <use xlink:href="#lucide-film"></use>
+<div id="video-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 backdrop-blur-lg p-4" onclick="closeVideoModal()">
+    <button class="absolute top-4 right-4 z-50 bg-black/50 p-2 rounded-full text-white hover:text-brand-gold backdrop-blur-md" aria-label="Close video modal" onclick="closeVideoModal()">
+        <svg class="w-6 h-6">
+            <use xlink:href="#lucide-x"></use>
         </svg>
-        <p class="text-lg md:text-xl text-white font-display">Brand Film Coming Soon</p>
-        <p class="text-text-muted text-xs md:text-sm mt-2">Tap anywhere to close</p>
+    </button>
+    <div>
+        <div class="aspect-video"><iframe id="youtube-video" src="https://www.youtube.com/embed/BDh9SwrrF30?controls=1&amp;showinfo=0&enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="rounded-lg shadow-lg w-full h-full"></iframe></div>
     </div>
 </div>

@@ -11,7 +11,7 @@ There comes a point in every project where you stop philosophising over a glass 
 These pedals already exist.
 The circuits are designed. The components are selected. The enclosures, knobs, and artwork are finished. What you’re seeing isn’t a concept or a rendering—it’s working hardware.
 
-![Oepicus Guitar Pedals on the carpet](/assets/posts/colourful_enclosures.jpeg#w-30%;a-left)Right now, these pedals are being tested the way they’re meant to be tested: in real homes, on real floors, under real feet. They’re being played, pushed, and occasionally abused. This phase isn’t about invention anymore; it’s about refinement. Small, careful adjustments. Listening closely. Making improvements right up until we lock things down and commit to production.
+![Oepicus Guitar Pedals on the carpet](/assets/posts/pedals_in_line.jpeg#w-30%;a-left)Right now, these pedals are being tested the way they’re meant to be tested: in real homes, on real floors, under real feet. They’re being played, pushed, and occasionally abused. This phase isn’t about invention anymore; it’s about refinement. Small, careful adjustments. Listening closely. Making improvements right up until we lock things down and commit to production.
 
 Yes, some of this is happening on carpets.
 Very ordinary carpets.
