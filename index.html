@@ -7,7 +7,7 @@ changefreq: daily
 ---
 
 <!-- Hero Section -->
-<header class="relative flex justify-center pt-48 md:pt-56 pb-24 md:pb-32 px-6 z-10">
+<header class="relative flex justify-center pt-32 md:pt-32 pb-14 md:pb-14 px-6 z-10">
     <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center w-full">
 
         <!-- Hero Text -->
@@ -69,78 +69,62 @@ changefreq: daily
 
 
 
-<!-- Oepicus Club -->
-<section class="py-12 relative z-10 bg-brand-red/90 backdrop-blur-sm overflow-hidden mt-1">
-    <div class="absolute inset-0 bg-gradient-to-r from-brand-dark/80 to-transparent"></div>
-    <div class="max-w-5xl mx-auto px-6 relative z-20 text-center">
-        <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-4">Oepicus Club</h2>
-        <p class="text-brand-gold font-bold uppercase tracking-widest text-xs md:text-sm mb-8">Exclusive Offers // Top Secret Information</p>
-        <div class="max-w-4xl mx-auto px-6 text-center flex flex-col md:flex-row items-center justify-center gap-6">
-            <p class="text-white/80 text-lg md:text-xl">
-                The Apollon Series launches on
-            </p>
-            <img src="assets/kickstarter_logo_2019.svg" alt="Kickstarter" class="h-5">
-            <p class="text-white/80 text-lg md:text-xl">
-                MARCH 2026
-            </p>
-        </div>
+<!-- Combined Club and Kickstarter Section -->
+<section class="py-6 md:py-6 relative z-10 border-y border-white/10">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
 
-        <!-- <p class="text-white/80 text-base md:text-lg mb-8 max-w-3xl mx-auto font-light">
-                     launches on Kickstarter this February.
-                    Join Oepicus Club to get pre-launch updates, early access, and exclusive offers before pledges go live.
-                </p> -->
-        <p class="text-white/80 text-base md:text-lg mb-8 max-w-3xl mx-auto">
-            Join Oepicus Club to get pre-launch updates, early access, and exclusive offers before pledges go live.
-        </p>
-        <form class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto" data-form="subscribe">
-            <div class="relative flex-1">
-                <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/50 w-4 h-4">
-                    <use xlink:href="#lucide-mail"></use>
-                </svg>
-                <input type="email" name="email" placeholder="ENTER EMAIL ADDRESS" class="w-full bg-black/30 border border-white/20 text-white placeholder-white/50 py-4 pl-12 pr-4 focus:outline-none focus:border-brand-gold transition-colors text-xs tracking-widest uppercase rounded-sm h-14">
-            </div>
-            <!-- Hidden field for tags -->
-            <input type="hidden" name="tags" value="{{ site.app_name }}_landing_page">
-
-            <button type="submit" class="bg-brand-gold text-brand-dark font-bold uppercase tracking-widest px-8 py-4 hover:bg-white transition-colors rounded-sm h-14 flex items-center justify-center gap-2 text-xs">
-                GRAB UPDATES <svg class="w-4 h-4">
-                    <use xlink:href="#lucide-arrow-right"></use>
-                </svg>
-            </button>
-        </form>
-        <div class="response-message mt-3"></div>
-
-    </div>
-
-    <!-- Kickstarter Launch Section -->
-    <!-- <section class="py-12 bg-black/40 border-y border-white/10 relative z-10 bg-heartbeat">
-                <div class="max-w-4xl mx-auto px-6 text-center flex flex-col md:flex-row items-center justify-center gap-6">
+        <!-- <div class="py-12 relative z-10 bg-brand-red/90 backdrop-blur-sm overflow-hidden mt-1"> -->
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-dark/80 to-transparent"></div>
+            <div class="max-w-5xl mx-auto px-6 relative z-20 text-center">
+                <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-4">Oepicus Club</h2>
+                <!-- <p class="text-brand-gold font-bold uppercase tracking-widest text-xs md:text-sm mb-8">Exclusive Offers // Top Secret Information</p> -->
+                    <p class="text-white/80 text-lg md:text-xl">
+                        The Apollon Series launches on
+                    </p>
+                                    <div class="flex justify-center mb-6">
+                    <img src="assets/kickstarter_logo_2019.svg" alt="Kickstarter" class="h-5 md:h-5">
                 </div>
-            </section> -->
+                <p class="text-white/80 text-base md:text-lg mb-8 max-w-3xl mx-auto">
+                    Sign up to get Early Bird Pricing and Give-Aways.
 
-</section>
+                </p>
+                <form class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto" data-form="subscribe">
+                    <div class="relative flex-1">
+                        <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/50 w-4 h-4">
+                            <use xlink:href="#lucide-mail"></use>
+                        </svg>
+                        <input type="email" name="email" placeholder="ENTER EMAIL ADDRESS" class="w-full bg-black/30 border border-white/20 text-white placeholder-white/50 py-4 pl-12 pr-4 focus:outline-none focus:border-brand-gold transition-colors text-xs tracking-widest uppercase rounded-sm h-14">
+                    </div>
+                    <!-- Hidden field for tags -->
+                    <input type="hidden" name="tags" value="{{ site.app_name }}_landing_page">
 
-<!-- Kickstarter Pre-launch Section -->
-<section class="py-16 md:py-20 bg-black/50 border-y-2 border-green-400/50 relative z-10 overflow-hidden">
-    <div class="absolute inset-0 bg-grid opacity-30"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black"></div>
-    <div class="max-w-4xl mx-auto text-center fade-in-up">
+                    <button type="submit" class="bg-brand-gold text-brand-dark font-bold uppercase tracking-widest px-8 py-4 hover:bg-white transition-colors rounded-sm h-14 flex items-center justify-center gap-2 text-xs">
+                        GRAB DEAL <svg class="w-4 h-4">
+                            <use xlink:href="#lucide-arrow-right"></use>
+                        </svg>
+                    </button>
+                </form>
+                <div class="response-message mt-3"></div>
 
-        <!-- </div>    <div class="max-w-8xl mx-auto px-6 text-center relative z-20 fade-in-up"> -->
-        <div class="flex justify-center mb-6">
-            <img src="assets/kickstarter_logo_2019.svg" alt="Kickstarter" class="h-8 md:h-10">
+            </div>
+
+        <!-- </div > -->
+
+        <!-- Kickstarter Pre-launch Section -->
+        <div class="bg-black/50 border-2 border-green-400/50 p-8 rounded-lg text-center h-full flex flex-col justify-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-grid opacity-30"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black"></div>
+            <div class="relative z-10">
+                <div class="flex justify-center mb-6">
+                    <img src="assets/kickstarter_logo_2019.svg" alt="Kickstarter" class="h-8 md:h-10">
+                </div>
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-3">We Are in Pre-Launch!</h2>
+                <p class="text-green-300 font-bold uppercase tracking-widest text-sm mb-6">Follow Our Campaign to Get Notified on Launch</p>
+                <a href="https://www.kickstarter.com/projects/1voct/oepicus-patchable-guitar-pedals" class="inline-flex px-8 py-4 bg-green-500 text-brand-dark font-bold rounded-sm hover:bg-white transition-all duration-300 items-center justify-center gap-2 tracking-widest uppercase text-sm">
+                    Follow on Kickstarter
+                </a>
+            </div>
         </div>
-        <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-3">We Are in Pre-Launch!</h2>
-        <p class="text-green-300 font-bold uppercase tracking-widest text-sm mb-6">Follow Our Campaign to Get Notified on Launch</p>
-        <p class="text-white/80 text-base mb-8 md:text-xl max-w-16xl mx-auto">
-            The journey to forge the Apollon Series is about to begin. Be among the first to know when our Kickstarter goes live. Follow our project to secure early-bird offers and become a founding part of the Oepicus story.
-        </p>
-        <p>
-            <a href="https://www.kickstarter.com/projects/1voct/oepicus-patchable-guitar-pedals" class="px-8 py-4 bg-green-500 text-brand-dark font-bold rounded-sm hover:bg-white transition-all duration-300 flex items-center justify-center gap-2 tracking-widest uppercase text-sm">
-                Follow on Kickstarter
-            </a>
-
-        </p>
     </div>
 </section>
 
