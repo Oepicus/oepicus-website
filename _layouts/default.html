@@ -80,32 +80,32 @@
             }
 
             ::-webkit-scrollbar-track {
-                background: #050505;
+                background: #FBF0DF;
             }
 
             ::-webkit-scrollbar-thumb {
-                background: #333;
+                background: #d1c7b8;
                 border-radius: 3px;
             }
 
             ::-webkit-scrollbar-thumb:hover {
-                background: #555;
+                background: #bdae9a;
             }
 
             .glass {
-                background: rgba(255, 255, 255, 0.03);
+                background: rgba(0, 0, 0, 0.03);
                 backdrop-filter: blur(10px);
                 -webkit-backdrop-filter: blur(10px);
-                border: 1px solid rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(0, 0, 0, 0.05);
             }
 
             /* Updated Glass Heavy to be more transparent for cards */
             .glass-heavy {
-                background: rgba(18, 18, 20, 0.7);
+                background: rgba(255, 255, 255, 0.7);
                 /* Reduced opacity from 0.95 */
                 backdrop-filter: blur(20px);
                 -webkit-backdrop-filter: blur(20px);
-                border: 1px solid rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(0, 0, 0, 0.05);
             }
 
             /* New Utility for Product Cards */
@@ -113,7 +113,7 @@
                 background: rgba(0, 0, 0, 0.4);
                 backdrop-filter: blur(8px);
                 -webkit-backdrop-filter: blur(8px);
-                border: 1px solid rgba(255, 255, 255, 0.08);
+                border: 1px solid rgba(0, 0, 0, 0.08);
             }
 
             .text-gradient {
@@ -147,8 +147,8 @@
                 position: fixed;
                 top: 0;
                 left: 0;
-                width: 100%;
-                height: 100%;
+                width: 100vw;
+                height: 100vh;
                 background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.1));
                 background-size: 100% 4px;
                 pointer-events: none;
@@ -165,8 +165,8 @@
             /* Grid Background for Map Effect */
             .bg-grid {
                 background-size: 40px 40px;
-                background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+                background-image: linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
             }
 
             .glow-text {
@@ -188,14 +188,14 @@
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
-                background: rgba(0, 0, 0, 0.5);
-                color: white;
+                background: rgba(255, 255, 255, 0.5);
+                color: #242424;
                 padding: 0.5rem;
                 border-radius: 50%;
                 cursor: pointer;
                 transition: all 0.3s ease;
                 backdrop-filter: blur(4px);
-                border: 1px solid rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(0, 0, 0, 0.1);
                 /* Opacity removed to keep arrows visible automatically */
                 z-index: 30;
             }
@@ -210,7 +210,7 @@
                 width: 6px;
                 height: 6px;
                 border-radius: 50%;
-                background: rgba(255, 255, 255, 0.3);
+                background: rgba(0, 0, 0, 0.3);
                 transition: all 0.3s ease;
                 cursor: pointer;
             }
@@ -305,8 +305,7 @@
         }
         </script>
     </head>
-
-    <body class="bg-void text-text-main font-sans antialiased selection:bg-brand-gold selection:text-brand-dark overflow-x-hidden relative">
+    <body class="bg-void text-text-main font-sans antialiased selection:bg-brand-gold selection:text-white overflow-x-hidden relative">
 
         <!-- SVG Icon Sprite -->
         {% include lucide-sprite.svg %}
@@ -378,7 +377,7 @@
             }
 
             function renderProducts(filter) {
-                const productCards = document.querySelectorAll('#product-grid > div');
+                const productCards = document.querySelectorAll('#product-grid > .group');
 
                 document.querySelectorAll('.filter-btn').forEach(btn => {
                     const btnFilter = btn.innerText.trim();
@@ -386,11 +385,11 @@
                         btn.classList.add('bg-white', 'text-void');
                         btn.classList.remove('text-text-muted');
                     } else {
-                        btn.classList.remove('bg-white', 'text-void');
+                        btn.classList.remove('bg-text-main', 'text-void');
                         btn.classList.add('text-text-muted');
                     }
                 });
-
+                
                 productCards.forEach(card => {
                     const category = card.dataset.category;
                     if (filter === 'all' || category === filter) {

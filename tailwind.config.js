@@ -26,16 +26,16 @@ module.exports = {
         '30': '30%',
       },
       colors: {
-        void: '#050505',
-        panel: '#121214',
+        void: '#FBF0DF', // creme-marble-white
+        panel: '#ffffff',
         brand: {
           gold: '#C5A059',
           red: '#8A2525',
-          dark: '#0A0A0A'
+          dark: '#FBF0DF' // Inverted for text selection
         },
         text: {
-          main: '#ffffff',
-          muted: '#94a3b8'
+          main: '#242424', // charcoal-pencil black
+          muted: '#555555'
         }
       },
       fontFamily: {
