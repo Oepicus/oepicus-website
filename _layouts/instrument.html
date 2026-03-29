@@ -115,17 +115,17 @@ layout: default
             </div>
 
             <!-- Right Side: Details -->
-            <div class="text-white">
+            <div class="text-text-main">
                 <p class="text-brand-gold font-bold uppercase tracking-widest text-xs mb-2">{{ product.category }}</p>
                 <h1 class="text-4xl md:text-5xl font-display font-bold mb-2">{{ product.name }}</h1>
                 <h2 class="text-xl text-text-muted font-light mb-6">{{ product.subtitle }}</h2>
                 
-                <div class="prose prose-invert prose-lg max-w-none text-text-muted leading-relaxed mb-8">
+                <div class="prose prose-lg max-w-none text-text-muted leading-relaxed mb-8">
                     <p>{{ product.desc | newline_to_br }}</p>
                 </div>
 
                 <div class="mb-8">
-                    <h3 class="font-bold text-white uppercase tracking-widest text-sm mb-4">Core Character</h3>
+                    <h3 class="font-bold text-text-main uppercase tracking-widest text-sm mb-4">Core Character</h3>
                     <ul class="space-y-3 text-text-muted">
                         {% for feature in product.features %}
                         <li class="flex items-start gap-3"><div class="w-1.5 h-1.5 mt-2 bg-brand-gold rounded-full shrink-0"></div><span>{{ feature }}</span></li>
@@ -133,22 +133,22 @@ layout: default
                     </ul>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4 bg-black/40 p-6 rounded-lg border border-white/10">
+                <div class="grid grid-cols-2 gap-4 bg-black/5 p-6 rounded-lg border border-black/10">
                     <div>
                         <p class="text-xs text-text-muted uppercase tracking-widest">Bypass</p>
-                        <p class="font-bold text-white">{{ product.specs.bypass }}</p>
+                        <p class="font-bold text-text-main">{{ product.specs.bypass }}</p>
                     </div>
                     <div>
                         <p class="text-xs text-text-muted uppercase tracking-widest">Power</p>
-                        <p class="font-bold text-white">{{ product.specs.power }}</p>
+                        <p class="font-bold text-text-main">{{ product.specs.power }}</p>
                     </div>
                     <div>
                         <p class="text-xs text-text-muted uppercase tracking-widest">Draw</p>
-                        <p class="font-bold text-white">{{ product.specs.draw }}</p>
+                        <p class="font-bold text-text-main">{{ product.specs.draw }}</p>
                     </div>
                     <div>
                         <p class="text-xs text-text-muted uppercase tracking-widest">Origin</p>
-                        <p class="font-bold text-white">{{ product.specs.origin }}</p>
+                        <p class="font-bold text-text-main">{{ product.specs.origin }}</p>
                     </div>
                 </div>
             </div>
@@ -156,8 +156,8 @@ layout: default
 
         {% if product.videos and product.videos.size > 0 %}
         <!-- Video Section -->
-        <div class="mt-24 pt-16 border-t border-white/10">
-            <h3 class="text-3xl md:text-4xl font-display font-bold text-white mb-8 text-center">In Action (sound from {{ product.name }})</h3>
+        <div class="mt-24 pt-16 border-t border-black/10">
+            <h3 class="text-3xl md:text-4xl font-display font-bold text-text-main mb-8 text-center">In Action (sound from {{ product.name }})</h3>
             <div class="max-w-4xl mx-auto grid grid-cols-2 gap-4 md:gap-8">
                 {% for video_url in product.videos %} {% assign video_id = video_url | split: '/' | last | split: '?' | first %}
                     <!-- Vertical Aspect Ratio Container for YouTube Shorts -->
@@ -177,14 +177,14 @@ layout: default
         {% endif %}
 
         <!-- Kickstarter Pre-launch Section -->
-        <div class="mt-40 pt-16 mb-16 border-t border-white/10">
+        <div class="mt-40 pt-16 mb-16 border-t border-black/10">
             <div class="max-w-4xl mx-auto text-center fade-in-up">
                 <div class="flex justify-center mb-6">
                     <img src="{{ site.baseurl }}/assets/kickstarter_logo_2019.svg" alt="Kickstarter" class="h-8 md:h-10">
                 </div>
-                <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-3">We Are in Pre-Launch!</h2>
+                <h2 class="text-3xl md:text-4xl font-display font-bold text-text-main mb-3">We Are in Pre-Launch!</h2>
                 <p class="text-green-300 font-bold uppercase tracking-widest text-sm mb-6">Follow Our Campaign to Get Notified on Launch</p>
-                <p class="text-white/80 text-base mb-8 md:text-xl max-w-16xl mx-auto">
+                <p class="text-text-muted text-base mb-8 md:text-xl max-w-16xl mx-auto">
                     The journey to forge the Apollon Series is about to begin. Be among the first to know when our Kickstarter goes live. Follow our project to secure early-bird offers and become a founding part of the Oepicus story.
                 </p>
                 <p>
@@ -196,14 +196,14 @@ layout: default
         </div>
 
         <!-- Subscribe Section -->
-        <div class="mt-16 pt-16 border-t border-white/10">
+        <div class="mt-16 pt-16 border-t border-black/10">
             <div class="max-w-lg mx-auto text-center fade-in-up">
                 <h3 class="text-2xl font-display font-bold mb-4">Subscribe to Newsletter</h3>
                 <p class="text-text-muted mb-8 text-sm">Get the latest signals from Oepicus, including product announcements, articles, and exclusive offers.</p>
                 <form class="flex flex-col sm:flex-row gap-4" data-form="subscribe">
                     <div class="relative flex-1">
-                        <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/50 w-4 h-4"><use xlink:href="#lucide-mail"></use></svg>
-                        <input type="email" name="email" placeholder="YOUR EMAIL ADDRESS" class="w-full bg-black/30 border border-white/20 text-white placeholder-white/50 py-4 pl-12 pr-4 focus:outline-none focus:border-brand-gold transition-colors text-xs tracking-widest uppercase rounded-sm h-14">
+                        <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 text-text-muted w-4 h-4"><use xlink:href="#lucide-mail"></use></svg>
+                        <input type="email" name="email" placeholder="YOUR EMAIL ADDRESS" class="w-full bg-black/5 border border-black/10 text-text-main placeholder-text-muted py-4 pl-12 pr-4 focus:outline-none focus:border-brand-gold transition-colors text-xs tracking-widest uppercase rounded-sm h-14">
                     </div>
                     <input type="hidden" name="tags" value="{{ site.app_name }}_instrument_page_{{ product.name | slugify }}">
                     <button type="submit" class="bg-brand-gold text-brand-dark font-bold uppercase tracking-widest px-8 py-4 hover:bg-white transition-colors rounded-sm h-14 flex items-center justify-center gap-2 text-xs">
@@ -225,15 +225,15 @@ layout: default
         {% assign next_product = products[next_product_index] %}
         {% assign prev_product = products[prev_product_index] %}
 
-        <div class="mt-24 pt-16 border-t border-white/10 flex justify-between items-center">
+        <div class="mt-24 pt-16 border-t border-black/10 flex justify-between items-center">
             <!-- Previous Product -->
             <a href="{{ site.baseurl }}/instruments/{{ prev_product.name | slugify }}" class="group flex items-center gap-4 text-left">
-                <div class="p-3 rounded-full bg-white/5 border border-white/10 group-hover:bg-brand-gold/20 group-hover:border-brand-gold/30 transition-all">
-                    <svg class="w-6 h-6 text-white group-hover:text-brand-gold transition-colors"><use xlink:href="#lucide-chevron-left"></use></svg>
+                <div class="p-3 rounded-full bg-black/5 border border-black/10 group-hover:bg-brand-gold/20 group-hover:border-brand-gold/30 transition-all">
+                    <svg class="w-6 h-6 text-text-main group-hover:text-brand-gold transition-colors"><use xlink:href="#lucide-chevron-left"></use></svg>
                 </div>
                 <div>
                     <p class="text-xs text-text-muted uppercase tracking-widest">Previous</p>
-                    <p class="font-bold text-white text-lg font-display group-hover:text-brand-gold transition-colors">{{ prev_product.name }}</p>
+                    <p class="font-bold text-text-main text-lg font-display group-hover:text-brand-gold transition-colors">{{ prev_product.name }}</p>
                 </div>
             </a>
 
@@ -241,10 +241,10 @@ layout: default
             <a href="{{ site.baseurl }}/instruments/{{ next_product.name | slugify }}" class="group flex items-center gap-4 text-right">
                 <div>
                     <p class="text-xs text-text-muted uppercase tracking-widest">Next</p>
-                    <p class="font-bold text-white text-lg font-display group-hover:text-brand-gold transition-colors">{{ next_product.name }}</p>
+                    <p class="font-bold text-text-main text-lg font-display group-hover:text-brand-gold transition-colors">{{ next_product.name }}</p>
                 </div>
-                <div class="p-3 rounded-full bg-white/5 border border-white/10 group-hover:bg-brand-gold/20 group-hover:border-brand-gold/30 transition-all">
-                    <svg class="w-6 h-6 text-white group-hover:text-brand-gold transition-colors"><use xlink:href="#lucide-chevron-right"></use></svg>
+                <div class="p-3 rounded-full bg-black/5 border border-black/10 group-hover:bg-brand-gold/20 group-hover:border-brand-gold/30 transition-all">
+                    <svg class="w-6 h-6 text-text-main group-hover:text-brand-gold transition-colors"><use xlink:href="#lucide-chevron-right"></use></svg>
                 </div>
             </a>
         </div>
