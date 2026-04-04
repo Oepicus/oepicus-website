@@ -15,12 +15,58 @@
         ],
         "specs": { "bypass": "Buffered", "draw": "85mA", "power": "9V DC", "origin": "The Fold Point" },
         "features": [
-            "<strong>Analog Boost + Envelope-Driven Wavefolder</strong><br><span class=\"text-text-muted font-light\">A dynamic front end feeds a responsive wavefolding stage, letting harmonics emerge according to touch rather than force alone.</span>",
-            "<strong>Dynamic, Not Compressed</strong><br><span class=\"text-text-muted font-light\">Playing nuance is preserved. Each note unfolds differently depending on attack, sustain, and intent.</span>",
-            "<strong>Symmetry and Fracture</strong><br><span class=\"text-text-muted font-light\">Clean and folded signals coexist—stillness and pressure meeting at the fold point, usually without arguing.</span>"
+            "<strong>Dynamic Amplitude Engine</strong><br><span class=\"text-text-muted font-light\">Dynamically modulates the wavefolder's bias based on the intensity of your input signal.</span>",
+            "<strong>Harmonic Wavefolding Bliss</strong><br><span class=\"text-text-muted font-light\">Increases harmonic complexity by folding waveforms at a set threshold, using dedicated Fold and Bias controls to sculpt rich, evolving timbres.</span>",
+            "<strong>Modular Expressive Control</strong><br><span class=\"text-text-muted font-light\">Expand sound design potential with CV-controlled FOLD and BIAS, alongside a dedicated envelope output that turns Tyrus into an expressive, fully integrated hub for your modular ecosystem.</span>"
         ],
-        "desc": "Guided by Apollo and the sacred swans that carry his voice, Tyrus captures the exact moment harmony is coaxed into a state of transformation. It is not your standard dirt box—though it handles 'grisly' with surprising grace once the gain starts to climb.\n\n Instead of just masking your tone, Tyrus pairs an always-on analog boost with a reactive wavefolder to make the signal an extension of your hands. Play with a light touch, and the tone stays glassy and articulate. Dig in, and you will feel the waveform bend and fracture, surfacing vocal harmonics that feel less like a static effect and more like a living, breathing response to your attack."
-   },
+        "desc": "Tyrus captures the exact moment harmony is coaxed into a state of transformation. It is not your standard dirt box—though it handles 'grisly' with surprising grace once the gain starts to climb.\n\n Instead of just masking your tone, Tyrus pairs an always-on analog boost with a reactive wavefolder to make the signal an extension of your hands. Play with a light touch, and the tone stays glassy and articulate. Dig in, and you will feel the waveform bend and fracture, surfacing vocal harmonics that feel less like a static effect and more like a living, breathing response to your attack.",
+        "connections": [
+            { "type": "IN", "label": "Input", "description": "Guitar/Instrument high-Z input." },
+            { "type": "OUT", "label": "Output", "description": "Sends the processed signal to your amplifier or the next pedal in your chain." },
+            { "type": "POWER", "label": "Power In", "description": "Requires a 9V DC power supply. Do not connect to AC power." },
+            { "type": "BIAS", "label": "Bias (CV IN)", "description": "0-5V CV control of Wavefolder Bias" },
+            { "type": "TONE", "label": "Tone (CV IN)", "description": "0-5V CV control of Tone Amount" },
+            { "type": "FOLD", "label": "Fold (CV IN)", "description": "0-5V CV control of Wavefolder Fold Amount" },
+            { "type": "ENV", "label": "Envelope (CV OUT)", "description": "0-5V CV output of generated envelope signal" }
+        ],
+        "controls": [
+            { "label": "Boost", "description": "Gain control of op-amp boost circuit." },
+            { "label": "Wave Level", "description": "Overall affects output volume control from -INF to-xxdB (nominal)." },
+            { "label": "Envelope Fold Mod", "description": "Controls the amount of modulation the internally generated envelope has on the BIAS control of the Wavefolder effect." },
+            { "label": "Fold Amount", "description": "Controls the amount of folding the wavefolder implements. The higher the setting, the more folding and harmonics produced. At max, the effect is fuzz-like" },
+            { "label": "Tone", "description": "Passive filter based tone control providing a pseudo-notch filter capable of releasing or taming major lows." },
+            { "label": "Low Tone", "description": "Tone control for adding low-end frequencies to the output." },
+            { "label": "Fast/Smooth Toggle", "description": "Down position (FAST) sets the envelope generator to a quick following of the placed dynamics, while the Up position (SMOOTH) sets the envelope generator to smoothly and slowly follow the dynamic playing." },
+            { "label": "Bypass Switch", "description": "Bypass effect enables/disables footswitch for Wavefolder effect." }
+        ],
+        "audioDemos": [
+            { 
+                "label" : "Guitar",
+                "demos": [
+                    { "label": "Dynamic Wavefolding", "url": "/assets/audio/tyrus_guitar_dynamic_wavefolding.m4a" }
+                    
+                ]
+            },
+            { 
+                "label" : "Bass",
+                "demos": [
+                    { "label": "Shlocky Bass Wobble", "url": "/assets/audio/tyrus_bass_schlocky_bass_wobble.m4a" }
+                    
+                ]
+            }
+        ],
+        "manuals": [
+            { "label": "User Manual", "date": "2023-01-01", "version": "1.0", "url": "/assets/manuals/tyrus_user_manual.pdf" },
+            { "label": "Quick Start Guide", "date": "2023-01-01", "version": "1.0", "url": "/assets/manuals/tyrus_quick_start_guide.pdf" }
+        ],
+        "specifications": {
+            "Bypass Type": "Buffered",
+            "Current Draw": "85mA",
+            "Power Requirements": "9V DC",
+            "Dimensions": "120mm x 60mm x 50mm",
+            "Weight": "400g"
+        }
+    },
     {
         "id": "OE-6003",
         "name": "Eclipse",
@@ -88,10 +134,37 @@
         "features": [
             "<strong>Tri-Engine Gain Architecture</strong><br><span class=\"text-text-muted font-light\">DS-1–inspired distortion, Big Muff–style transistor fuzz, and TS-9–influenced overdrive coexist in a single system, each contributing its own opinion about how sound should be treated.</span>",
             "<strong>Controlled Instability</strong><br><span class=\"text-text-muted font-light\">Capable of tight, aggressive tones or expansive, self-interacting noise fields, depending largely on how much you encourage it.</span>",
-            "<strong>Designed for Play, Not Safety</strong><br><span class=\"text-text-muted font-light\">Rewards curiosity, attention, and a willingness to listen carefully before turning the next knob.</span>"
+            "<strong>Intense Modular Control</strong><br><span class=\"text-text-muted font-light\">CV inputs let you integrate into modular setups and respond dynamically to patchs. Shape your fuzz like never before.</span>"
         ],
-        "desc": "Born from one of Apollos less orderly moods, Maelstrom explores what happens when a signal is encouraged—repeatedly and with enthusiasm—to argue with itself. It is not a polite pedal, and it makes no promises about behaving sensibly once invited into your signal chain.\n\n By cannibalizing its own signal through a network of pitch-shifting and gain stages, Maelstrom forces distortion, fuzz, and overdrive to collide in ways that are occasionally musical and frequently enlightening. It is built for rigs that value exploration over safety and the occasional moment of brave, loud decision-making.\n\n Warning: Output levels may reach values best described as 'holy moly.' Consider your speakers (and your neighbors) before you go full-throttle.",
-        "extendedInfo": ""
+        "desc": "Maelstrom explores what happens when a signal is encouraged—repeatedly and with enthusiasm—to argue with itself. It is not a polite pedal, and it makes no promises about behaving sensibly once invited into your signal chain.\n\n By cannibalizing its own signal through a network of pitch-shifting and gain stages, Maelstrom forces distortion, fuzz, and overdrive to collide in ways that are occasionally musical and frequently enlightening. It is built for rigs that value exploration over safety and the occasional moment of brave, loud decision-making.\n\n Warning: Output levels may reach values best described as 'holy moly.' Consider your speakers (and your neighbors) before you go full-throttle.",  "connections": [
+            { "type": "IN", "label": "Input", "description": "Guitar/Instrument high-Z input." },
+            { "type": "OUT", "label": "Output", "description": "Sends the processed signal to your amplifier or the next pedal in your chain." },
+            { "type": "POWER", "label": "Power In", "description": "Requires a 9V DC power supply. Do not connect to AC power." },
+            { "type": "FUZZ", "label": "Fuzz (CV IN)", "description": "0-5V CV control of Fuzz Gain" },
+            { "type": "DIST", "label": "Dist (CV IN)", "description": "0-5V CV control of Distortion Gain" },
+            { "type": "OVD", "label": "Ovd (CV IN)", "description": "0-5V CV control of Overdrive Gain" },
+            { "type": "TONE", "label": "Tone (CV IN)", "description": "0-5V CV control of Tone Amount" }
+        ],
+        "controls": [
+            { "label": "Volume", "description": "Overall effects output volume control from -INF to -xxdB." },
+            { "label": "Tone", "description": "Passive filter based tone control providing a pseudo-notch filter capable of releasing or taming major lows." },
+            { "label": "Fuzz", "description": "Gain control for Fuzz effect" },
+            { "label": "Distortion", "description": "Gain control for Distortion effect" },
+            { "label": "Overdrive", "description": "Gain control for Overdrive effect" },
+            { "label": "Fuzz Bypass Switch", "description": "Bypass effect enables/disables footswitch for Fuzz effect." },
+            { "label": "Distortion Bypass Switch", "description": "Bypass effect enables/disables footswitch for Distortion effect." },
+            { "label": "Overdrive Bypass Switch", "description": "Bypass effect enables/disables footswitch for Overdrive effect." }
+
+        ],
+        
+        "specifications": {
+            "Bypass Type": "Buffered",
+            "Current Draw": "40mA",
+            "Power Requirements": "9V DC",
+            "Dimensions": "120mm x 60mm x 50mm",
+            "Weight": "400g"
+        }
+        
 
     },
     {
@@ -111,9 +184,34 @@
         "specs": { "bypass": "True Bypass", "draw": "30mA", "power": "9V DC", "origin": "A Controlled Burn" },
         "features": [
             "<strong>3-Stage MOSFET Fuzz Gain Block</strong><br><span class=\"text-text-muted font-light\">Delivers a wide dynamic range, from controlled overdrive through fractured distortion to unstable fuzz, depending largely on how firmly you insist.</span>",
-            "<strong>Precision Tone Shaping</strong><br><span class=\"text-text-muted font-light\">APassive notch filter likened to classic tone controls allowing tasteful control of the fuzz tone.</span>",
-            "<strong>Expressive by Design</strong><br><span class=\"text-text-muted font-light\">Maintains clarity at lower settings; introduces harmonic collision, octave artifacts, and mild unruliness when pushed.</span>"
+            "<strong>Expressive by Design</strong><br><span class=\"text-text-muted font-light\">Maintains clarity at lower settings; introduces harmonic collision, octave artifacts, and mild unruliness when pushed.</span>",
+             "<strong>Modular Fuzz Control</strong><br><span class=\"text-text-muted font-light\">CV-controlled HIGH and LOW gain, integrates into modular setups and allows you to animate your fuzz as you wish.</span>"
         ],
-        "desc": "Guided by Apollo—God of light, music, and the occasional inconvenient truth—Pyr balances on the razors edge where clarity and intensity briefly agree to coexist. It is not a traditional fuzz, and frankly, it would prefer you didn't call it one.\n\nThere are hidden textures to be found once you lean into the gain. Play with a light touch, and Pyr behaves with a civil, blues-inflected restraint. Push it harder, and it begins to voice its more complicated opinions on harmony. Built for everything from traditional guitar rigs to CV-driven modular systems, Pyr finds its home as a high-fidelity Fuzz—a controlled burn with a very specific, sharp-edged bite."
+        "desc": "Pyr balances on the razors edge where clarity and intensity briefly agree to coexist. It is not a traditional fuzz, and frankly, it would prefer you didn't call it one.\n\nThere are hidden textures to be found once you lean into the gain. Play with a light touch, and Pyr behaves with a civil, blues-inflected restraint. Push it harder, and it begins to voice its more complicated opinions on harmony. Built for everything from traditional guitar rigs to CV-driven modular systems, Pyr finds its home as a high-fidelity Fuzz—a controlled burn with a very specific, sharp-edged bite.",
+        "connections": [
+            { "type": "IN", "label": "Input", "description": "Guitar/Instrument high-Z input." },
+            { "type": "OUT", "label": "Output", "description": "Sends the processed signal to your amplifier or the next pedal in your chain." },
+            { "type": "POWER", "label": "Power In", "description": "Requires a 9V DC power supply. Do not connect to AC power." },
+            { "type": "LOW", "label": "Low (CV IN)", "description": "0-5V CV control of Low Gain" },
+            { "type": "TONE", "label": "High (CV IN)", "description": "0-5V CV control of High Gain" }
+
+        ],
+        "controls": [
+            { "label": "Volume", "description": "Overall affects output volume control from -INF to-xxdB (nominal)." },
+            { "label": "Tone", "description": "Passive filter based tone control providing a pseudo-notch filter capable of releasing or taming major lows." },
+            { "label": "High Gain", "description": "Gain control for releasing higher frequency saturation." },
+            { "label": "Low Gain", "description": "Gain control for releasing low frequency saturation." },
+            { "label": "LF Enable", "description": "Unlocks sub-frequencies when set to enable position (down)." },
+            { "label": "Bypass Switch", "description": "True Bypass effect enables/disables footswitch." }
+
+        ],
+       
+        "specifications": {
+            "Bypass Type": "True Byass",
+            "Current Draw": "30mA",
+            "Power Requirements": "9V DC",
+            "Dimensions": "120mm x 60mm x 50mm",
+            "Weight": "400g"
+        }
     }
 ]

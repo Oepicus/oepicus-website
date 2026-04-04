@@ -132,7 +132,7 @@ layout: default
                         {% endfor %}
                     </ul>
                 </div>
-
+<!--
                 <div class="grid grid-cols-2 gap-4 bg-black/5 p-6 rounded-lg border border-black/10">
                     <div>
                         <p class="text-xs text-text-muted uppercase tracking-widest">Bypass</p>
@@ -151,33 +151,146 @@ layout: default
                         <p class="font-bold text-text-main">{{ product.specs.origin }}</p>
                     </div>
                 </div>
+-->
             </div>
         </div>
 
-        {% if product.videos and product.videos.size > 0 %}
-        <!-- Video Section -->
-        <div class="mt-24 pt-16 border-t border-black/10">
+    </main>
+
+    {% if product.videos and product.videos.size > 0 %}
+    <!-- Video Section -->
+    <section class="py-16 border-t border-black/10 bg-black/5">
+        <div class="max-w-7xl mx-auto px-6">
             <h3 class="text-3xl md:text-4xl font-display font-bold text-text-main mb-8 text-center">In Action (sound from {{ product.name }})</h3>
-            <div class="max-w-4xl mx-auto grid grid-cols-2 gap-4 md:gap-8">
+            <div class="max-w-2xl mx-auto grid grid-cols-2 gap-4 md:gap-8">
                 {% for video_url in product.videos %} {% assign video_id = video_url | split: '/' | last | split: '?' | first %}
-                    <!-- Vertical Aspect Ratio Container for YouTube Shorts -->
-                    <div class="relative w-full overflow-hidden rounded-lg shadow-lg bg-black" style="padding-top: 177.77%;">
-                        <iframe
-                            class="absolute top-0 left-0 w-full h-full"
-                            src="https://www.youtube.com/embed/{{ video_id }}"
-                            title="YouTube video player"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen>
-                        </iframe>
-                    </div>
+                <!-- Vertical Aspect Ratio Container for YouTube Shorts -->
+                <div class="relative w-full overflow-hidden rounded-lg shadow-lg bg-black" style="padding-top: 177.77%;">
+                    <iframe class="absolute top-0 left-0 w-full h-full" src="https://www.youtube.com/embed/{{ video_id }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                    </iframe>
+                </div>
                 {% endfor %}
             </div>
         </div>
-        {% endif %}
+    </section>
+    {% endif %}
 
-        <!-- Kickstarter Pre-launch Section -->
-        <div class="mt-40 pt-16 mb-16 border-t border-black/10">
+    {% if product.connections or product.controls %}
+    <!-- Controls & Connections Section -->
+    <section class="py-16 border-t border-black/10">
+        <div class="max-w-7xl mx-auto px-6">
+            <h3 class="text-3xl md:text-4xl font-display font-bold text-text-main mb-12 text-center">Controls & Connections</h3>
+            <div class="grid md:grid-cols-2 gap-12 lg:gap-16">
+                <!-- Left: Connections -->
+                {% if product.connections %}
+                <div>
+                    <h4 class="font-bold text-text-main uppercase tracking-widest text-sm mb-6">Connections</h4>
+                    <div class="space-y-6">
+                        {% for conn in product.connections %}
+                        <div class="flex items-start gap-4">
+                            <span class="text-xs uppercase tracking-widest font-bold bg-black/10 text-text-muted px-2 py-1 rounded-sm mt-1 w-20 text-center shrink-0">{{ conn.type }}</span>
+                            <div>
+                                <p class="font-bold text-text-main">{{ conn.label }}</p>
+                                <p class="text-text-muted text-sm">{{ conn.description }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Right: Controls -->
+                {% if product.controls %}
+                <div>
+                    <h4 class="font-bold text-text-main uppercase tracking-widest text-sm mb-6">Controls</h4>
+                    <div class="space-y-6">
+                        {% for control in product.controls %}
+                        <div>
+                            <p class="font-bold text-text-main">{{ control.label }}</p>
+                            <p class="text-text-muted text-sm">{{ control.description }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    {% if product.audioDemos and product.audioDemos.size > 0 %}
+    <!-- Audio Demos Section -->
+    <section class="py-16 border-t border-black/10 bg-black/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <h3 class="text-3xl md:text-4xl font-display font-bold text-text-main mb-12 text-center">Audio Demos</h3>
+            <div class="max-w-4xl mx-auto space-y-12">
+                {% for demo_group in product.audioDemos %}
+                <div>
+                    <h4 class="font-bold text-text-main uppercase tracking-widest text-sm mb-6">{{ demo_group.label }}</h4>
+                    <div class="space-y-4">
+                        {% for demo in demo_group.demos %}
+                        <div class="bg-black/5 p-4 rounded-lg">
+                            <p class="font-medium text-text-main text-sm mb-2">{{ demo.label }}</p>
+                            <audio controls class="w-full" style="height: 40px;">
+                                <source src="{{ site.baseurl }}{{ demo.url }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    {% if product.specifications %}
+    <!-- Specifications Section -->
+    <section class="py-16 border-t border-black/10">
+        <div class="max-w-7xl mx-auto px-6">
+            <h3 class="text-3xl md:text-4xl font-display font-bold text-text-main mb-12 text-center">Specifications</h3>
+            <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-8">
+                {% for spec in product.specifications %}
+                <div class="bg-black/5 p-4 rounded-lg">
+                    <p class="text-xs text-text-muted uppercase tracking-widest">{{ spec[0] }}</p>
+                    <p class="font-bold text-text-main mt-1">{{ spec[1] }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    {% if product.manuals and product.manuals.size > 0 %}
+    <!-- Manuals Section -->
+    <section class="py-16 border-t border-black/10 bg-black/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <h3 class="text-3xl md:text-4xl font-display font-bold text-text-main mb-12 text-center">Manuals & Downloads</h3>
+            <div class="max-w-2xl mx-auto flex flex-col md:flex-row gap-4 justify-center">
+                {% for manual in product.manuals %}
+                <a href="{{ site.baseurl }}{{ manual.url }}" target="_blank" class="flex-1 text-center px-6 py-4 bg-black/5 hover:bg-brand-gold border border-black/10 hover:border-brand-gold rounded-sm text-text-main hover:text-brand-dark transition-colors uppercase tracking-widest text-xs font-bold flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4 shrink-0"><use xlink:href="#lucide-download-cloud"></use></svg>
+                    <div>
+                        <span class="uppercase tracking-widest text-xs font-bold">{{ manual.label }}</span>
+                        {% if manual.version or manual.date %}
+                            <span class="block text-text-muted text-[0.65rem] font-normal normal-case mt-0.5">
+                                {% if manual.version %}v{{ manual.version }}{% endif %}
+                                {% if manual.version and manual.date %} - {% endif %}
+                                {% if manual.date %}{{ manual.date }}{% endif %}
+                            </span>
+                        {% endif %}
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Kickstarter Pre-launch Section -->
+    <section class="py-16 border-t border-black/10">
+        <div class="max-w-7xl mx-auto px-6">
             <div class="max-w-4xl mx-auto text-center fade-in-up">
                 <div class="flex justify-center mb-6">
                     <img src="{{ site.baseurl }}/assets/kickstarter_logo_2019.svg" alt="Kickstarter" class="h-8 md:h-10">
@@ -194,9 +307,11 @@ layout: default
                 </p>
             </div>
         </div>
+    </section>
 
-        <!-- Subscribe Section -->
-        <div class="mt-16 pt-16 border-t border-black/10">
+    <!-- Subscribe Section -->
+    <section class="py-16 border-t border-black/10 bg-black/5">
+        <div class="max-w-7xl mx-auto px-6">
             <div class="max-w-lg mx-auto text-center fade-in-up">
                 <h3 class="text-2xl font-display font-bold mb-4">Subscribe to Newsletter</h3>
                 <p class="text-text-muted mb-8 text-sm">Get the latest signals from Oepicus, including product announcements, articles, and exclusive offers.</p>
@@ -213,42 +328,44 @@ layout: default
                 <div class="response-message mt-3"></div>
             </div>
         </div>
+    </section>
 
-        <!-- Next/Previous Product Navigation -->
-        {% assign product_count = products | size %}
-        {% assign next_product_index = current_product_index | plus: 1 %}
-        {% if next_product_index >= product_count %}{% assign next_product_index = 0 %}{% endif %}
+    <!-- Next/Previous Product Navigation -->
+    {% assign product_count = products | size %}
+    {% assign next_product_index = current_product_index | plus: 1 %}
+    {% if next_product_index >= product_count %}{% assign next_product_index = 0 %}{% endif %}
 
-        {% assign prev_product_index = current_product_index | minus: 1 %}
-        {% if prev_product_index < 0 %}{% assign prev_product_index = product_count | minus: 1 %}{% endif %}
+    {% assign prev_product_index = current_product_index | minus: 1 %}
+    {% if prev_product_index < 0 %}{% assign prev_product_index = product_count | minus: 1 %}{% endif %}
 
-        {% assign next_product = products[next_product_index] %}
-        {% assign prev_product = products[prev_product_index] %}
+    {% assign next_product = products[next_product_index] %}
+    {% assign prev_product = products[prev_product_index] %}
 
-        <div class="mt-24 pt-16 border-t border-black/10 flex justify-between items-center">
-            <!-- Previous Product -->
-            <a href="{{ site.baseurl }}/instruments/{{ prev_product.name | slugify }}" class="group flex items-center gap-4 text-left">
-                <div class="p-3 rounded-full bg-black/5 border border-black/10 group-hover:bg-brand-gold/20 group-hover:border-brand-gold/30 transition-all">
-                    <svg class="w-6 h-6 text-text-main group-hover:text-brand-gold transition-colors"><use xlink:href="#lucide-chevron-left"></use></svg>
-                </div>
-                <div>
-                    <p class="text-xs text-text-muted uppercase tracking-widest">Previous</p>
-                    <p class="font-bold text-text-main text-lg font-display group-hover:text-brand-gold transition-colors">{{ prev_product.name }}</p>
-                </div>
-            </a>
+    <section class="py-16 border-t border-black/10">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+                <!-- Previous Product -->
+                <a href="{{ site.baseurl }}/instruments/{{ prev_product.name | slugify }}" class="group flex items-center gap-4 text-left">
+                    <div class="p-3 rounded-full bg-black/5 border border-black/10 group-hover:bg-brand-gold/20 group-hover:border-brand-gold/30 transition-all">
+                        <svg class="w-6 h-6 text-text-main group-hover:text-brand-gold transition-colors"><use xlink:href="#lucide-chevron-left"></use></svg>
+                    </div>
+                    <div>
+                        <p class="text-xs text-text-muted uppercase tracking-widest">Previous</p>
+                        <p class="font-bold text-text-main text-lg font-display group-hover:text-brand-gold transition-colors">{{ prev_product.name }}</p>
+                    </div>
+                </a>
 
-            <!-- Next Product -->
-            <a href="{{ site.baseurl }}/instruments/{{ next_product.name | slugify }}" class="group flex items-center gap-4 text-right">
-                <div>
-                    <p class="text-xs text-text-muted uppercase tracking-widest">Next</p>
-                    <p class="font-bold text-text-main text-lg font-display group-hover:text-brand-gold transition-colors">{{ next_product.name }}</p>
-                </div>
-                <div class="p-3 rounded-full bg-black/5 border border-black/10 group-hover:bg-brand-gold/20 group-hover:border-brand-gold/30 transition-all">
-                    <svg class="w-6 h-6 text-text-main group-hover:text-brand-gold transition-colors"><use xlink:href="#lucide-chevron-right"></use></svg>
-                </div>
-            </a>
+                <!-- Next Product -->
+                <a href="{{ site.baseurl }}/instruments/{{ next_product.name | slugify }}" class="group flex items-center gap-4 text-right">
+                    <div>
+                        <p class="text-xs text-text-muted uppercase tracking-widest">Next</p>
+                        <p class="font-bold text-text-main text-lg font-display group-hover:text-brand-gold transition-colors">{{ next_product.name }}</p>
+                    </div>
+                    <div class="p-3 rounded-full bg-black/5 border border-black/10 group-hover:bg-brand-gold/20 group-hover:border-brand-gold/30 transition-all">
+                        <svg class="w-6 h-6 text-text-main group-hover:text-brand-gold transition-colors"><use xlink:href="#lucide-chevron-right"></use></svg>
+                    </div>
+                </a>
         </div>
-    </main>
+    </section>
 
     {% if product.images.size > 1 %}
     <script>
