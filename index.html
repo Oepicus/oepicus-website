@@ -11,20 +11,19 @@ changefreq: daily
     <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center w-full">
 
         <!-- Hero Text -->
-        <div class="space-y-6 md:space-y-8 fade-in-up text-center lg:text-left z-20">
+        <div class="space-y-6 md:space-y-8 fade-in-up text-center z-20">
             <!-- <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] font-bold tracking-[0.3em] uppercase text-brand-gold mx-auto lg:mx-0">
                 <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
                 Signal Live
             </div> -->
             <!-- UPDATED SIZE: Significantly reduced to text-2xl/3xl/5xl to ensure single-line display -->
-            <h1 class="text-2xl sm:text-3xl md:text-5xl font-display font-bold leading-[0.9] tracking-tight">
-                <span class="text-gradient glitch-hover cursor-default whitespace-nowrap">Expressive Music Instruments</span>
+            <h1 class="text-3xl sm:text-4xl md:text-6xl font-display font-bold leading-[0.9] tracking-tight">
+                <span class="text-gradient glitch-hover cursor-default whitespace-nowrap">INSTRUMENTS</br>FOR THE</br>UNCHARTED</span>
+                <!-- <span class="text-black glitch-hover cursor-default whitespace-nowrap">INSTRUMENTS</br>FOR THE</br>UNCHARTED</span> -->
                 <!-- <span class="whitespace-nowrap">Expressive Music Instruments</span><br> -->
             </h1>
-            <h2 class="text-lg md:text-2xl font-display font-medium leading-tight text-text-main">Turn Your Pedalboard Into a Bridge Between Guitar and Synth</h2>
-            <p class="text-base md:text-lg text-text-muted max-w-md mx-auto lg:mx-0 leading-relaxed">
+            <p class="text-base md:text-lg text-text-muted max-w-md mx-auto leading-relaxed">
                 Inspired by voltage-driven chaos, Oepicus transforms effects into a living, patchable system you can play—while still working beautifully as standalone pedals.
-
             </p>
             <!-- <div class="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
                 <a href="#products" class="px-8 py-4 bg-brand-gold text-brand-dark font-bold rounded-sm hover:bg-white transition-all duration-300 flex items-center justify-center gap-2 tracking-widest uppercase text-sm">
@@ -54,15 +53,16 @@ changefreq: daily
 
                 {% assign is_first_hero_image = true %}
                 {% for p in site.data.products %}
-                {% for image in p.images %}
-                {% assign image_path = image | replace: '//', '/' %}
+                {% assign first_image = p.images[0] %}
+                {% if first_image %}
+                {% assign image_path = first_image | replace: '//', '/' %}
                 <picture>
                     <source srcset="{{ image_path }}.webp" type="image/webp">
                     <source srcset="{{ image_path }}.png" type="image/png">
                     <img src="{{ image_path }}.png" class="hero-slide absolute inset-0 w-full h-full object-contain z-10 drop-shadow-[0_0_50px_rgba(197,160,89,0.2)] mask-image-gradient p-4 {% if is_first_hero_image %}opacity-100 scale-100 blur-0{% else %}opacity-0 scale-95 blur-sm{% endif %}" style="mask-image: linear-gradient(black 80%, transparent 100%);" alt="{{ p.name }} hero image" loading="{% if is_first_hero_image %}eager{% else %}lazy{% endif %}">
                 </picture>
                 {% assign is_first_hero_image = false %}
-                {% endfor %}
+                {% endif %}
                 {% endfor %}
             </div>
         </div>
